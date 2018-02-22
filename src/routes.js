@@ -1,15 +1,20 @@
+import App from './App'
 import { Home, About } from 'containers'
-import { loadData } from 'containers/Home/Home'
 
 export default [
   {
-    path: '/',
-    component: Home,
-    exact: true,
-    loadData
-  },
-  {
-    path: '/about',
-    component: About
+    component: App,
+    routes: [
+      {
+        component: Home,
+        path: '/',
+        exact: true
+      },
+      {
+        component: About,
+        path: '/about',
+        exact: true
+      }
+    ]
   }
 ]

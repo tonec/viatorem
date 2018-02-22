@@ -4,34 +4,35 @@ import { Provider } from 'react-redux'
 import createHistory from 'history/createBrowserHistory'
 import qhistory from 'qhistory'
 import { stringify, parse } from 'qs'
-import { Router } from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 import AppContainer from 'react-hot-loader/lib/AppContainer'
-import App from 'App'
+import { renderRoutes } from 'react-router-config'
+import routes from 'routes'
 import configureStore from 'redux/configureStore'
 
 const history = qhistory(createHistory(), stringify, parse)
 const { store } = configureStore(history, window.REDUX_STATE)
 
-const render = Component => {
+const render = routes => {
   const root = document.getElementById('root')
 
   ReactDOM.hydrate(
     <AppContainer>
       <Provider store={store}>
-        <Router history={history}>
-          <App />
-        </Router>
+        <BrowserRouter>
+          <div>{renderRoutes(routes)}</div>
+        </BrowserRouter>
       </Provider>
     </AppContainer>,
     root
   )
 }
 
-render(App)
+render(routes)
 
 if (module.hot && process.env.NODE_ENV === 'development') {
-  module.hot.accept('./App', () => {
-    const App = require('./App').default
-    render(App)
+  module.hot.accept('./routes', () => {
+    const newRoutes = require('./routes').default
+    render(newRoutes)
   })
 }

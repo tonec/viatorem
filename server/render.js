@@ -9,8 +9,8 @@ import createHistory from 'history/createMemoryHistory'
 import qhistory from 'qhistory'
 import { stringify, parse } from 'qs'
 import configureStore from '../src/redux/configureStore'
+import { renderRoutes } from 'react-router-config'
 import routes from '../src/routes'
-import App from '../src/App'
 
 export default ({ clientStats }) => async (req, res, next) => {
   const history = qhistory(
@@ -28,7 +28,7 @@ export default ({ clientStats }) => async (req, res, next) => {
 
   if (!store) return // no store means redirect was already served
 
-  const app = createApp(App, store, req, history)
+  const app = createApp(req, store, {})
   const appString = ReactDOM.renderToString(app)
   const state = store.getState()
   const stateJson = JSON.stringify(state)
@@ -57,10 +57,10 @@ export default ({ clientStats }) => async (req, res, next) => {
   )
 }
 
-const createApp = (App, store, req, history) => (
+const createApp = (req, store, context) => (
   <Provider store={store}>
-    <StaticRouter context={{}} location={req.path} history={history}>
-      <App />
+    <StaticRouter location={req.path} context={context}>
+      <div>{renderRoutes(routes)}</div>
     </StaticRouter>
   </Provider>
 )
