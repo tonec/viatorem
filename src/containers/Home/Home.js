@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { provideHooks } from 'redial'
 import { fetchTrips } from 'redux/modules/trips/actions'
 
+@provideHooks()
 class Home extends Component {
   render () {
     return (
@@ -10,10 +12,6 @@ class Home extends Component {
       </div>
     )
   }
-}
-
-export const loadData = store => {
-  return store.dispatch(fetchTrips())
 }
 
 const mapStateToProps = ({ trips }) => ({
