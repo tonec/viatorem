@@ -25,6 +25,7 @@ module.exports = {
   name: 'server',
   target: 'node',
   devtool: 'source-map',
+  context: path.resolve(__dirname, '..'),
   entry: [res('../server/render.js')],
   externals,
   output: {
@@ -53,6 +54,10 @@ module.exports = {
     ]
   },
   resolve: {
+    modules: [
+      path.resolve('./src'),
+      path.resolve('./node_modules')
+    ],
     extensions: ['.js', '.css']
   },
   plugins: [

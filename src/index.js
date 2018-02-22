@@ -6,8 +6,8 @@ import qhistory from 'qhistory'
 import { stringify, parse } from 'qs'
 import { Router } from 'react-router-dom'
 import AppContainer from 'react-hot-loader/lib/AppContainer'
-import App from './App'
-import configureStore from './redux/configureStore'
+import App from 'App'
+import configureStore from 'redux/configureStore'
 
 const history = qhistory(createHistory(), stringify, parse)
 const { store } = configureStore(history, window.REDUX_STATE)

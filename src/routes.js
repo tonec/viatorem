@@ -1,5 +1,5 @@
-import Home, { loadData } from './containers/Home'
-import About from './containers/About'
+import { Home, About } from 'containers'
+import { loadData } from 'containers/Home/Home'
 
 export default [
   {

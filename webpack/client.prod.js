@@ -8,6 +8,7 @@ module.exports = {
   name: 'client',
   target: 'web',
   devtool: 'source-map',
+  context: path.resolve(__dirname, '..'),
   entry: ['babel-polyfill', path.resolve(__dirname, '../src/index.js')],
   output: {
     filename: '[name].[chunkhash].js',
@@ -37,6 +38,10 @@ module.exports = {
     ]
   },
   resolve: {
+    modules: [
+      path.resolve('./src'),
+      path.resolve('./node_modules')
+    ],
     extensions: ['.js', '.css']
   },
   plugins: [

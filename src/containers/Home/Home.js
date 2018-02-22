@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchTrips } from '../redux/modules/trips/actions'
+import { fetchTrips } from 'redux/modules/trips/actions'
 
 class Home extends Component {
   render () {

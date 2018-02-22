@@ -9,6 +9,7 @@ module.exports = {
   target: 'web',
   // devtool: 'source-map',
   devtool: 'eval',
+  context: path.resolve(__dirname, '..'),
   entry: [
     'babel-polyfill',
     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=false&quiet=false&noInfo=false',
@@ -43,6 +44,10 @@ module.exports = {
     ]
   },
   resolve: {
+    modules: [
+      path.resolve('./src'),
+      path.resolve('./node_modules')
+    ],
     extensions: ['.js', '.css']
   },
   plugins: [

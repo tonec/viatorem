@@ -26,6 +26,7 @@ module.exports = {
   target: 'node',
   // devtool: 'source-map',
   devtool: 'eval',
+  context: path.resolve(__dirname, '..'),
   entry: ['babel-polyfill', res('../server/render.js')],
   externals,
   output: {
@@ -55,6 +56,10 @@ module.exports = {
     ]
   },
   resolve: {
+    modules: [
+      path.resolve('./src'),
+      path.resolve('./node_modules')
+    ],
     extensions: ['.js', '.css']
   },
   plugins: [

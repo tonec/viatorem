@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux'
 import thunk from 'redux-thunk'
-import apiClient from '../utils/apiClient'
+import apiClient from 'utils/apiClient'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import * as reducers from './modules'
 
