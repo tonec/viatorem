@@ -8,6 +8,8 @@ import { matchRoutes } from 'react-router-config'
 import createHistory from 'history/createMemoryHistory'
 import qhistory from 'qhistory'
 import { stringify, parse } from 'qs'
+import asyncMatchRoutes from 'utils/asyncMatchRoutes'
+import { trigger } from 'redial'
 import configureStore from '../src/redux/configureStore'
 import { renderRoutes } from 'react-router-config'
 import routes from '../src/routes'
@@ -27,6 +29,16 @@ export default ({ clientStats }) => async (req, res, next) => {
   await Promise.all(loadDataPromises)
 
   if (!store) return // no store means redirect was already served
+
+  const { components, match, params } = await asyncMatchRoutes(routes, req.originalUrl)
+
+  await trigger('fetch', components, {
+    store,
+    match,
+    params,
+    history,
+    location: history.location
+  })
 
   const app = createApp(req, store, {})
   const appString = ReactDOM.renderToString(app)

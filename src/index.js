@@ -7,14 +7,30 @@ import { stringify, parse } from 'qs'
 import { BrowserRouter } from 'react-router-dom'
 import AppContainer from 'react-hot-loader/lib/AppContainer'
 import { renderRoutes } from 'react-router-config'
+import asyncMatchRoutes from 'utils/asyncMatchRoutes'
+import { trigger } from 'redial'
 import routes from 'routes'
 import configureStore from 'redux/configureStore'
 
 const history = qhistory(createHistory(), stringify, parse)
 const { store } = configureStore(history, window.REDUX_STATE)
 
-const render = routes => {
-  const root = document.getElementById('root')
+const render = async routes => {
+  const { components, match, params } = await asyncMatchRoutes(
+    routes,
+    history.location.pathname
+  )
+
+  const triggerLocals = {
+    store,
+    match,
+    params,
+    history,
+    location: history.location
+  }
+
+  await trigger('fetch', components, triggerLocals)
+  await trigger('defer', components, triggerLocals)
 
   ReactDOM.hydrate(
     <AppContainer>
@@ -24,7 +40,7 @@ const render = routes => {
         </BrowserRouter>
       </Provider>
     </AppContainer>,
-    root
+    document.getElementById('root')
   )
 }
 
