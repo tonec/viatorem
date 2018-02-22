@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "standard",
+    "standard-react"
+  ],
+  "rules": {
+    "no-debugger": "warn",
+    "comma-dangle": 0,
+    "quotes": [2, "single", "avoid-escape"],
+    "jsx-quotes": ["error", "prefer-double"],
+    "react/jsx-no-bind": [1, {"ignoreRefs": false, "allowArrowFunctions": true, "allowBind": false}],
+    "no-unused-vars": [1],
+    "no-return-assign": 0
+  }
+}
