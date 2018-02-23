@@ -2,6 +2,7 @@ import 'babel-polyfill'
 import express from 'express'
 import httpProxy from 'http-proxy'
 import webpack from 'webpack'
+import Loadable from 'react-loadable'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 import webpackHotServerMiddleware from 'webpack-hot-server-middleware'
@@ -48,6 +49,16 @@ if (DEV) {
   app.use(serverRender({ clientStats, outputPath }))
 }
 
-app.listen(3000, () => {
-  console.log('Listening @ http://localhost:3000/')
-})
+const start = async () => {
+  try {
+    await Loadable.preloadAll()
+  } catch (error) {
+    console.log('Error preloading loadable chunks')
+  }
+
+  app.listen(3000, () => {
+    console.log('Listening @ http://localhost:3000/')
+  })
+}
+
+start()

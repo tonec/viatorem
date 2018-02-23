@@ -3,6 +3,8 @@ const webpack = require('webpack')
 const WriteFilePlugin = require('write-file-webpack-plugin')
 const AutoDllPlugin = require('autodll-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const ReactLoadablePlugin = require('react-loadable/webpack')
+  .ReactLoadablePlugin
 
 module.exports = {
   name: 'client',
@@ -62,6 +64,9 @@ module.exports = {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest',
       minChunks: Infinity
+    }),
+    new ReactLoadablePlugin({
+      filename: './buildClient/react-loadable.json'
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),

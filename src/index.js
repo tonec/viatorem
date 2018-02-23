@@ -9,6 +9,7 @@ import AppContainer from 'react-hot-loader/lib/AppContainer'
 import { renderRoutes } from 'react-router-config'
 import asyncMatchRoutes from 'utils/asyncMatchRoutes'
 import { trigger } from 'redial'
+import Loadable from 'react-loadable'
 import routes from 'routes'
 import configureStore from 'redux/configureStore'
 
@@ -44,7 +45,7 @@ const render = async routes => {
   )
 }
 
-render(routes)
+Loadable.preloadReady().then(() => render(routes))
 
 if (module.hot && process.env.NODE_ENV === 'development') {
   module.hot.accept('./routes', () => {
