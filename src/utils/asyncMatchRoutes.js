@@ -4,7 +4,8 @@ function getComponents (match) {
   return match.map(v => v.route.component).reduce(async (result, component) => {
     if (component.preload) {
       const res = await component.preload()
-      const ret = [...(await result), component, ...[].concat(res)]
+      console.log('res', res)
+      const ret = [...(await result), component, ...[].concat(res.default)]
       return ret
     }
     return [...(await result), component]
@@ -24,6 +25,8 @@ const asyncMatchRoutes = async (routes, pathname) => {
   const match = matchRoutes(routes, pathname)
   const params = getParams(match)
   const components = await getComponents(match)
+
+  console.log('components', components)
 
   return { components, match, params }
 }
