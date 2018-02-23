@@ -1,6 +1,6 @@
 import { matchRoutes } from 'react-router-config'
 
-function getComponents(match) {
+function getComponents (match) {
   return match.map(v => v.route.component).reduce(async (result, component) => {
     if (component.preload) {
       const res = await component.preload()
@@ -11,7 +11,7 @@ function getComponents(match) {
   }, [])
 }
 
-function getParams(match) {
+function getParams (match) {
   return match.reduce((result, component) => {
     if (component.match && component.match.params) {
       return { ...result, ...component.match.params }
