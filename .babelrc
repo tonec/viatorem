@@ -5,8 +5,7 @@
     "stage-0"
   ],
   "plugins": [
-    "transform-decorators-legacy",
-    "universal-import"
+    "transform-decorators-legacy"
   ],
   "env": {
     "development": {

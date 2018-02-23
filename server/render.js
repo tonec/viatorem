@@ -1,8 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/server'
 import { Provider } from 'react-redux'
-import { flushChunkNames } from 'react-universal-component/server'
-import flushChunks from 'webpack-flush-chunks'
 import { ConnectedRouter } from 'react-router-redux'
 import { renderRoutes } from 'react-router-config'
 import createHistory from 'history/createMemoryHistory'
@@ -37,26 +35,21 @@ export default ({ clientStats }) => async (req, res, next) => {
   const appString = ReactDOM.renderToString(app)
   const state = store.getState()
   const stateJson = JSON.stringify(state)
-  const chunkNames = flushChunkNames()
-  const { js, styles, cssHash } = flushChunks(clientStats, { chunkNames })
-
-  console.log('REQUESTED PATH:', req.path)
-  console.log('CHUNK NAMES RENDERED', chunkNames)
 
   return res.send(
     `<!doctype html>
       <html>
         <head>
           <meta charset="utf-8">
-          <title>${state.title}</title>
-          ${styles}
+          <title>Viatorem</title>
+          <link rel="stylesheet" type="text/css" href="/static/styles.css">
         </head>
         <body>
           <script>window.REDUX_STATE = ${stateJson}</script>
           <div id="root">${appString}</div>
-          ${cssHash}
           <script type='text/javascript' src='/static/vendor.js'></script>
-          ${js}
+          <script type='text/javascript' src='/static/manifest.js'></script>
+          <script type='text/javascript' src='/static/main.js'></script>
         </body>
       </html>`
   )

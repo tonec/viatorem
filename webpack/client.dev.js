@@ -2,7 +2,7 @@ const path = require('path')
 const webpack = require('webpack')
 const WriteFilePlugin = require('write-file-webpack-plugin')
 const AutoDllPlugin = require('autodll-webpack-plugin')
-const ExtractCssChunks = require('extract-css-chunks-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   name: 'client',
@@ -31,39 +31,38 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: ExtractCssChunks.extract({
-          use: [{
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              localIdentName: '[name]__[local]--[hash:base64:5]'
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                localIdentName: '[name]__[local]--[hash:base64:5]'
+              }
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true
+              }
             }
-          }, {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true
-            }
-          }]
+          ]
         })
       }
     ]
   },
   resolve: {
-    modules: [
-      path.resolve('./src'),
-      path.resolve('./node_modules')
-    ],
-    extensions: ['.js', '.css']
+    modules: [path.resolve('./src'), path.resolve('./node_modules')],
+    extensions: ['.js', '.scss']
   },
   plugins: [
-    new WriteFilePlugin(), // used so you can see what chunks are produced in dev
-    new ExtractCssChunks(),
+    new WriteFilePlugin(),
+    new ExtractTextPlugin('styles.css'),
     new webpack.optimize.CommonsChunkPlugin({
-      names: ['bootstrap'], // needed to put webpack bootstrap code before chunks
-      filename: '[name].js',
+      name: 'manifest',
       minChunks: Infinity
     }),
-
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
