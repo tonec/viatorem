@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import createHistory from 'history/createBrowserHistory'
 import qhistory from 'qhistory'
 import { stringify, parse } from 'qs'
-import { BrowserRouter } from 'react-router-dom'
+import { ConnectedRouter } from 'react-router-redux'
 import AppContainer from 'react-hot-loader/lib/AppContainer'
 import { renderRoutes } from 'react-router-config'
 import asyncMatchRoutes from 'utils/asyncMatchRoutes'
@@ -35,9 +35,9 @@ const render = async routes => {
   ReactDOM.hydrate(
     <AppContainer>
       <Provider store={store}>
-        <BrowserRouter>
+        <ConnectedRouter history={history}>
           <div>{renderRoutes(routes)}</div>
-        </BrowserRouter>
+        </ConnectedRouter>
       </Provider>
     </AppContainer>,
     document.getElementById('root')

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/server'
 import { Provider } from 'react-redux'
 import { flushChunkNames } from 'react-universal-component/server'
 import flushChunks from 'webpack-flush-chunks'
-import { StaticRouter } from 'react-router-dom'
+import { ConnectedRouter } from 'react-router-redux'
 import { matchRoutes } from 'react-router-config'
 import createHistory from 'history/createMemoryHistory'
 import qhistory from 'qhistory'
@@ -40,7 +40,7 @@ export default ({ clientStats }) => async (req, res, next) => {
     location: history.location
   })
 
-  const app = createApp(req, store, {})
+  const app = createApp(req, store, history)
   const appString = ReactDOM.renderToString(app)
   const state = store.getState()
   const stateJson = JSON.stringify(state)
@@ -69,10 +69,10 @@ export default ({ clientStats }) => async (req, res, next) => {
   )
 }
 
-const createApp = (req, store, context) => (
+const createApp = (req, store, history) => (
   <Provider store={store}>
-    <StaticRouter location={req.path} context={context}>
+    <ConnectedRouter location={req.path} history={history}>
       <div>{renderRoutes(routes)}</div>
-    </StaticRouter>
+    </ConnectedRouter>
   </Provider>
 )
