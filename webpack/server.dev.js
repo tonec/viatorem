@@ -43,15 +43,20 @@ module.exports = {
         use: 'babel-loader'
       },
       {
-        test: /\.css$/,
+        test: /\.scss$/,
         exclude: /node_modules/,
-        use: {
+        use: [{
           loader: 'css-loader/locals',
           options: {
             modules: true,
             localIdentName: '[name]__[local]--[hash:base64:5]'
           }
-        }
+        }, {
+          loader: 'sass-loader',
+          options: {
+            sourceMap: true
+          }
+        }]
       }
     ]
   },

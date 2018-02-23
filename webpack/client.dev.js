@@ -30,15 +30,20 @@ module.exports = {
         use: 'babel-loader'
       },
       {
-        test: /\.css$/,
+        test: /\.scss$/,
         use: ExtractCssChunks.extract({
-          use: {
+          use: [{
             loader: 'css-loader',
             options: {
               modules: true,
               localIdentName: '[name]__[local]--[hash:base64:5]'
             }
-          }
+          }, {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true
+            }
+          }]
         })
       }
     ]

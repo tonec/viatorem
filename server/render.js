@@ -4,14 +4,13 @@ import { Provider } from 'react-redux'
 import { flushChunkNames } from 'react-universal-component/server'
 import flushChunks from 'webpack-flush-chunks'
 import { ConnectedRouter } from 'react-router-redux'
-import { matchRoutes } from 'react-router-config'
+import { renderRoutes } from 'react-router-config'
 import createHistory from 'history/createMemoryHistory'
 import qhistory from 'qhistory'
 import { stringify, parse } from 'qs'
 import asyncMatchRoutes from 'utils/asyncMatchRoutes'
 import { trigger } from 'redial'
 import configureStore from '../src/redux/configureStore'
-import { renderRoutes } from 'react-router-config'
 import routes from '../src/routes'
 
 export default ({ clientStats }) => async (req, res, next) => {
@@ -21,12 +20,6 @@ export default ({ clientStats }) => async (req, res, next) => {
     parse
   )
   const { store } = configureStore(history, {}, req)
-
-  const loadDataPromises = matchRoutes(routes, req.path).map(({ route }) => {
-    return route.loadData && route.loadData(store)
-  })
-
-  await Promise.all(loadDataPromises)
 
   if (!store) return // no store means redirect was already served
 
