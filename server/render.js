@@ -30,7 +30,7 @@ export default ({ clientStats }) => async (req, res, next) => {
 
   if (!store) return // no store means redirect was already served
 
-  const { components, match, params } = await asyncMatchRoutes(routes, req.originalUrl)
+  const { components, match, params } = await asyncMatchRoutes(routes, req.path)
 
   await trigger('fetch', components, {
     store,
