@@ -6,7 +6,8 @@
   ],
   "plugins": [
     "transform-decorators-legacy",
-    "universal-import"
+    "universal-import",
+    "react-loadable/babel"
   ],
   "env": {
     "development": {

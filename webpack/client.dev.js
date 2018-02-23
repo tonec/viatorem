@@ -3,6 +3,7 @@ const webpack = require('webpack')
 const WriteFilePlugin = require('write-file-webpack-plugin')
 const AutoDllPlugin = require('autodll-webpack-plugin')
 const ExtractCssChunks = require('extract-css-chunks-webpack-plugin')
+const ReactLoadablePlugin = require('react-loadable/webpack').ReactLoadablePlugin
 
 module.exports = {
   name: 'client',
@@ -59,11 +60,12 @@ module.exports = {
     new WriteFilePlugin(), // used so you can see what chunks are produced in dev
     new ExtractCssChunks(),
     new webpack.optimize.CommonsChunkPlugin({
-      names: ['bootstrap'], // needed to put webpack bootstrap code before chunks
-      filename: '[name].js',
+      name: 'manifest',
       minChunks: Infinity
     }),
-
+    new ReactLoadablePlugin({
+      filename: './buildClient/react-loadable.json',
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
@@ -72,25 +74,6 @@ module.exports = {
         __CLIENT__: true,
         __SERVER__: false,
         __DEVTOOLS__: true // <-------- DISABLE redux-devtools HERE
-      }
-    }),
-    new AutoDllPlugin({
-      context: path.join(__dirname, '..'),
-      filename: '[name].js',
-      entry: {
-        vendor: [
-          'react',
-          'react-dom',
-          'react-redux',
-          'redux',
-          'redux-thunk',
-          'react-router',
-          'react-router-dom',
-          'history/createBrowserHistory',
-          'transition-group',
-          'babel-polyfill',
-          'redux-devtools-extension'
-        ]
       }
     })
   ]
