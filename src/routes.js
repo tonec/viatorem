@@ -1,5 +1,6 @@
 import App from './App'
-import { Home, About } from 'containers'
+import Home from 'containers/Home/Loadable'
+import About from 'containers/About/Loadable'
 
 export default [
   {

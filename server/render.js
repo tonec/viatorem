@@ -17,11 +17,14 @@ export default ({ clientStats }) => async (req, res, next) => {
     stringify,
     parse
   )
+
   const { store } = configureStore(history, {}, req)
+  const { components, match, params } = await asyncMatchRoutes(
+    routes,
+    req.originalUrl
+  )
 
-  if (!store) return // no store means redirect was already served
-
-  const { components, match, params } = await asyncMatchRoutes(routes, req.path)
+  console.log(components)
 
   await trigger('fetch', components, {
     store,
@@ -30,6 +33,8 @@ export default ({ clientStats }) => async (req, res, next) => {
     history,
     location: history.location
   })
+
+  if (!store) return // no store means redirect was already serve
 
   const app = createApp(req, store, history)
   const appString = ReactDOM.renderToString(app)
