@@ -3,6 +3,10 @@
     "standard",
     "standard-react"
   ],
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "allowImportExportEverywhere": true
+  },
   "rules": {
     "no-debugger": "warn",
     "comma-dangle": 0,
