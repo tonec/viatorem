@@ -1,8 +1,10 @@
 {
   "extends": [
     "standard",
-    "standard-react"
+    "standard-react",
+    "plugin:jest/recommended"
   ],
+  "plugins": ["jest"],
   "parser": "babel-eslint",
   "parserOptions": {
     "allowImportExportEverywhere": true
@@ -15,5 +17,8 @@
     "react/jsx-no-bind": [1, {"ignoreRefs": false, "allowArrowFunctions": true, "allowBind": false}],
     "no-unused-vars": [1],
     "no-return-assign": 0
+  },
+  "env": {
+    "jest/globals": true
   }
 }

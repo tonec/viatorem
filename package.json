@@ -17,7 +17,8 @@
     "precommit": "lint-staged",
     "cm": "git-cz",
     "lint": "eslint --fix src server webpack",
-    "format": "prettier --single-quote --semi=false --write '{src,server,webpack}/**/*.js' && npm run lint"
+    "format": "prettier --single-quote --semi=false --write '{src,server,webpack}/**/*.js' && npm run lint",
+    "test": "jest"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -64,11 +65,13 @@
     "eslint-config-standard": "^11.0.0",
     "eslint-config-standard-react": "^5.0.0",
     "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jest": "^21.12.2",
     "eslint-plugin-node": "^6.0.0",
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
     "extract-text-webpack-plugin": "^3.0.2",
     "husky": "^0.14.3",
+    "jest": "^22.4.2",
     "lint-staged": "^4.3.0",
     "node-sass": "^4.7.2",
     "prettier": "^1.4.4",
