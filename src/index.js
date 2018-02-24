@@ -12,6 +12,7 @@ import { trigger } from 'redial'
 import Loadable from 'react-loadable'
 import routes from 'routes'
 import configureStore from 'redux/configureStore'
+import ReduxAsyncConnect from 'components/ReduxAsyncConnect/ReduxAsyncConnect'
 
 const history = qhistory(createHistory(), stringify, parse)
 const { store } = configureStore(history, window.REDUX_STATE)
@@ -39,7 +40,9 @@ const render = async routes => {
     <AppContainer>
       <Provider store={store}>
         <ConnectedRouter history={history}>
-          <div>{renderRoutes(routes)}</div>
+          <ReduxAsyncConnect routes={routes} store={store} helpers={{}}>
+            <div>{renderRoutes(routes)}</div>
+          </ReduxAsyncConnect>
         </ConnectedRouter>
       </Provider>
     </AppContainer>,

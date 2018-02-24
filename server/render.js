@@ -13,6 +13,7 @@ import { trigger } from 'redial'
 import stats from '../buildClient/stats.json'
 import configureStore from '../src/redux/configureStore'
 import routes from '../src/routes'
+import ReduxAsyncConnect from '../src/components/ReduxAsyncConnect/ReduxAsyncConnect'
 
 export default ({ clientStats }) => async (req, res, next) => {
   let modules = []
@@ -43,7 +44,9 @@ export default ({ clientStats }) => async (req, res, next) => {
     <Loadable.Capture report={moduleName => modules.push(moduleName)}>
       <Provider store={store}>
         <ConnectedRouter location={req.path} history={history}>
-          <div>{renderRoutes(routes)}</div>
+          <ReduxAsyncConnect routes={routes} store={store} helpers={{}}>
+            <div>{renderRoutes(routes)}</div>
+          </ReduxAsyncConnect>
         </ConnectedRouter>
       </Provider>
     </Loadable.Capture>

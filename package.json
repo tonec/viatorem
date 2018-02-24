@@ -25,6 +25,7 @@
     "express": "^4.15.2",
     "history": "^4.6.3",
     "http-proxy": "^1.16.2",
+    "nprogress": "^0.2.0",
     "qhistory": "^1.0.0",
     "qs": "^6.5.1",
     "react": "^16.0.0",
