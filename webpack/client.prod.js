@@ -1,8 +1,10 @@
 const path = require('path')
 const webpack = require('webpack')
-const ExtractCssChunks = require('extract-css-chunks-webpack-plugin')
 const StatsPlugin = require('stats-webpack-plugin')
 const AutoDllPlugin = require('autodll-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const ReactLoadablePlugin = require('react-loadable/webpack')
+  .ReactLoadablePlugin
 
 module.exports = {
   name: 'client',
@@ -11,8 +13,8 @@ module.exports = {
   context: path.resolve(__dirname, '..'),
   entry: ['babel-polyfill', path.resolve(__dirname, '../src/index.js')],
   output: {
-    filename: '[name].[chunkhash].js',
-    chunkFilename: '[name].[chunkhash].js',
+    filename: '[name].js',
+    chunkFilename: '[name].js',
     path: path.resolve(__dirname, '../buildClient'),
     publicPath: '/static/'
   },
@@ -25,39 +27,43 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        use: ExtractCssChunks.extract({
-          use: [{
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              localIdentName: '[name]__[local]--[hash:base64:5]'
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                modules: true,
+                localIdentName: '[name]__[local]--[hash:base64:5]'
+              }
+            },
+            {
+              loader: 'sass-loader'
             }
-          }, {
-            loader: 'sass-loader'
-          }]
+          ]
         })
       }
     ]
   },
   resolve: {
-    modules: [
-      path.resolve('./src'),
-      path.resolve('./node_modules')
-    ],
+    modules: [path.resolve('./src'), path.resolve('./node_modules')],
     extensions: ['.js', '.css']
   },
   plugins: [
     new StatsPlugin('stats.json'),
-    new ExtractCssChunks(),
+    new ExtractTextPlugin('styles.css'),
     new webpack.optimize.CommonsChunkPlugin({
-      names: ['bootstrap'], // needed to put webpack bootstrap code before chunks
-      filename: '[name].[chunkhash].js',
+      name: 'manifest',
       minChunks: Infinity
     }),
-
+    new ReactLoadablePlugin({
+      filename: './buildClient/react-loadable.json'
+    }),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('production')
+        NODE_ENV: JSON.stringify('production'),
+        __CLIENT__: true,
+        __SERVER__: false
       }
     }),
     new webpack.optimize.UglifyJsPlugin({

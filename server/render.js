@@ -10,7 +10,7 @@ import Loadable from 'react-loadable'
 import { getBundles } from 'react-loadable/webpack'
 import asyncMatchRoutes from 'utils/asyncMatchRoutes'
 import { trigger } from 'redial'
-import stats from '../buildClient/react-loadable.json'
+import stats from '../buildClient/stats.json'
 import configureStore from '../src/redux/configureStore'
 import routes from '../src/routes'
 
