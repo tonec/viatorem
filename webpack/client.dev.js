@@ -38,6 +38,18 @@ module.exports = {
         use: 'babel-loader'
       },
       {
+        test: /\.css$/,
+        use: ExtractCSS.extract({
+          use: {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: '[name]__[local]--[hash:base64:5]'
+            }
+          }
+        })
+      },
+      {
         test: /\.global.(sass|scss)$/,
         include: [path.resolve(__dirname, '../src')],
         use: ExtractGlobalCSS.extract({
