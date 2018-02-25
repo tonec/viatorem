@@ -23,8 +23,6 @@ const render = async routes => {
     history.location.pathname
   )
 
-  console.log('components', components)
-
   const triggerLocals = {
     store,
     match,
