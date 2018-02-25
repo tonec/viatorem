@@ -10,7 +10,6 @@ import Loadable from 'react-loadable'
 import { getBundles } from 'react-loadable/webpack'
 import asyncMatchRoutes from 'utils/asyncMatchRoutes'
 import { trigger } from 'redial'
-import stats from '../buildClient/stats.json'
 import configureStore from '../src/redux/configureStore'
 import routes from '../src/routes'
 import ReduxAsyncConnect from '../src/components/ReduxAsyncConnect/ReduxAsyncConnect'
@@ -54,7 +53,7 @@ export default ({ clientStats }) => async (req, res, next) => {
 
   const state = store.getState()
   const stateJson = JSON.stringify(state)
-  const bundles = getBundles(stats, modules)
+  const bundles = getBundles(require('./stats.json'), modules)
   const styles = bundles.filter(bundle => bundle.file.endsWith('.css'))
   const scripts = bundles.filter(bundle => bundle.file.endsWith('.js'))
 
@@ -64,6 +63,7 @@ export default ({ clientStats }) => async (req, res, next) => {
         <head>
           <meta charset="utf-8">
           <title>Viatorem</title>
+          <link rel="stylesheet" type="text/css" href="/static/styles.global.css">
           <link rel="stylesheet" type="text/css" href="/static/styles.css">
           ${styles
     .map(

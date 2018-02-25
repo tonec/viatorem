@@ -6,6 +6,12 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const ReactLoadablePlugin = require('react-loadable/webpack')
   .ReactLoadablePlugin
 
+const ExtractGlobalCSS = new ExtractTextPlugin('styles.global.css')
+const ExtractCSS = new ExtractTextPlugin({
+  filename: 'styles.css',
+  allChunks: true
+})
+
 module.exports = {
   name: 'client',
   target: 'web',
@@ -26,9 +32,26 @@ module.exports = {
         use: 'babel-loader'
       },
       {
-        test: /\.scss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
+        test: /\.global.(sass|scss)$/,
+        include: [path.resolve(__dirname, '../src')],
+        use: ExtractGlobalCSS.extract({
+          use: [
+            {
+              loader: 'css-loader'
+            },
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true
+              }
+            }
+          ]
+        })
+      },
+      {
+        test: /^((?!\.global).)*(sass|scss)$/,
+        include: [path.resolve(__dirname, '../src')],
+        use: ExtractCSS.extract({
           use: [
             {
               loader: 'css-loader',
@@ -38,7 +61,10 @@ module.exports = {
               }
             },
             {
-              loader: 'sass-loader'
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true
+              }
             }
           ]
         })
@@ -51,13 +77,14 @@ module.exports = {
   },
   plugins: [
     new StatsPlugin('stats.json'),
-    new ExtractTextPlugin('styles.css'),
+    ExtractGlobalCSS,
+    ExtractCSS,
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest',
       minChunks: Infinity
     }),
     new ReactLoadablePlugin({
-      filename: './buildClient/react-loadable.json'
+      filename: './server/stats.json'
     }),
     new webpack.DefinePlugin({
       'process.env': {
