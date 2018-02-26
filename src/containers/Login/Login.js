@@ -5,7 +5,9 @@ import { login } from 'redux/modules/auth/actions'
 import { OneColumnThin } from 'components'
 import LoginForm from './LoginForm/LoginForm'
 
-class Login extends Component {
+@connect(() => ({}), { login })
+export default class Login extends Component {
+
   static propTypes = {
     login: PropTypes.func
   }
@@ -22,7 +24,3 @@ class Login extends Component {
     )
   }
 }
-
-const mapStateToProps = () => ({})
-
-export default connect(mapStateToProps, { login })(Login)
