@@ -1,5 +1,5 @@
 import App from './App'
-import Home from 'containers/Home/Loadable'
+import Home from 'containers/Home/Home'
 import Login from 'containers/Login/Loadable'
 
 export default [
