@@ -53,7 +53,14 @@ class Anchor extends Component {
   }
 
   render () {
-    const { tabIndex, role, disabled, onKeyDown, children, ...props } = this.props
+    const {
+      tabIndex,
+      role,
+      disabled,
+      onKeyDown,
+      children,
+      ...props
+    } = this.props
 
     if (isTrivialHref(props.href)) {
       props.role = props.role || 'button'

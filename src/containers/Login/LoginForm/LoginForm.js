@@ -8,7 +8,6 @@ import loginValidation from './loginValidation'
   validate: loginValidation
 })
 export default class LoginForm extends Component {
-
   static propTypes = {
     ...propTypes
   }
@@ -18,12 +17,7 @@ export default class LoginForm extends Component {
 
     return (
       <form className="form-horizontal" onSubmit={handleSubmit}>
-        <Field
-          name="email"
-          type="text"
-          component={TextField}
-          label="Email"
-        />
+        <Field name="email" type="text" component={TextField} label="Email" />
         <Field
           name="password"
           type="password"

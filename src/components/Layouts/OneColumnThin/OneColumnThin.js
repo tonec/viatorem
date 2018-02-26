@@ -29,9 +29,7 @@ const OneColumnThin = ({ title, className, children, ...props }) => {
       <Header>
         <Navigation />
       </Header>
-      <Content style={{ padding: '0 50px' }}>
-        {children}
-      </Content>
+      <Content style={{ padding: '0 50px' }}>{children}</Content>
     </div>
   )
 }

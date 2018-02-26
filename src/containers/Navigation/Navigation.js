@@ -49,7 +49,9 @@ class Navigation extends Component {
           </Menu.Item>
         )}
         {user && (
-          <Anchor className="navbar-item" onClick={this.handleLogout}>Log out</Anchor>
+          <Anchor className="navbar-item" onClick={this.handleLogout}>
+            Log out
+          </Anchor>
         )}
       </Menu>
     )

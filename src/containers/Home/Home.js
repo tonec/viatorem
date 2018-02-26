@@ -3,11 +3,7 @@ import { OneColumnThin } from 'components'
 
 class Home extends Component {
   render () {
-    return (
-      <OneColumnThin title="Home">
-        content
-      </OneColumnThin>
-    )
+    return <OneColumnThin title="Home">content</OneColumnThin>
   }
 }
 

@@ -4,7 +4,6 @@ import { OneColumnThin } from 'components'
 import LoginForm from './LoginForm/LoginForm'
 
 class Login extends Component {
-
   static propTypes = {
     login: PropTypes.func
   }

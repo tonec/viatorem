@@ -11,11 +11,7 @@ import 'assets/stylesheets/theme.global.scss'
 // })
 class App extends Component {
   render () {
-    return (
-      <div>
-        {renderRoutes(this.props.route.routes)}
-      </div>
-    )
+    return <div>{renderRoutes(this.props.route.routes)}</div>
   }
 }
 
