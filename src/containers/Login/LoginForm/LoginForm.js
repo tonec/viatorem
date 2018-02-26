@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { reduxForm, Field, propTypes } from 'redux-form'
 import { Form, Button } from 'antd'
-import { TextField } from 'redux-form-antd'
+import { TextField } from 'components/Forms/Inputs'
 import loginValidation from './loginValidation'
 
 @reduxForm({

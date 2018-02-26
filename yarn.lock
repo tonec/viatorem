@@ -7261,10 +7261,6 @@ redux-devtools@^3.4.1:
     prop-types "^15.5.7"
     redux-devtools-instrument "^1.0.1"
 
-redux-form-antd@^0.1.16:
-  version "0.1.16"
-  resolved "https://registry.yarnpkg.com/redux-form-antd/-/redux-form-antd-0.1.16.tgz#9969f0103e8ad98cfd08e852bcb5005fc409c47e"
-
 redux-form@^7.2.3:
   version "7.2.3"
   resolved "https://registry.yarnpkg.com/redux-form/-/redux-form-7.2.3.tgz#a01111116f386f3d88451b5528dfbb180561a8b4"

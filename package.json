@@ -45,7 +45,6 @@
     "redux-devtools": "^3.4.1",
     "redux-devtools-extension": "^2.13.2",
     "redux-form": "^7.2.3",
-    "redux-form-antd": "^0.1.16",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0"
   },
