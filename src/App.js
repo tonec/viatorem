@@ -9,10 +9,9 @@ import { isVerified, verify } from 'redux/modules/auth/actions'
 import 'assets/stylesheets/theme.global.scss'
 
 @provideHooks({
-  fetch: async ({ req, store: { dispatch, getState } }) => {
-    if (!isVerified(req, getState())) {
-      console.log('verify...')
-      await dispatch(verify()).catch(() => null)
+  fetch: ({ store: { dispatch, getState }, location }) => {
+    if (!isVerified(getState())) {
+      dispatch(verify()).catch(() => null)
     }
   }
 })

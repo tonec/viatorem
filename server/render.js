@@ -65,12 +65,8 @@ export default ({ clientStats }) => async (req, res, next) => {
           <meta charset="utf-8">
           <title>Viatorem</title>
           <link rel="stylesheet" type="text/css" href="/static/styles.global.css">
-          <link rel="stylesheet" type="text/css" href="/static/styles.css">
-          ${styles
-    .map(
-      style => `<link rel="stylesheet" href="/static/${style.file}">`
-    )
-    .join('\n')}
+          <link rel="shortcut icon" href="#" />
+          ${styles.map(style => `<link rel="stylesheet" href="/static/${style.file}">`).join('\n')}
         </head>
         <body>
           <script>window.REDUX_STATE = ${stateJson}</script>
@@ -78,9 +74,7 @@ export default ({ clientStats }) => async (req, res, next) => {
           <script type='text/javascript' src='/static/vendor.js'></script>
           <script type='text/javascript' src='/static/manifest.js'></script>
           <script type='text/javascript' src='/static/main.js'></script>
-          ${scripts
-    .map(script => `<script src="/static/${script.file}"></script>`)
-    .join('\n')}
+          ${scripts.map(script => `<script src="/static/${script.file}"></script>`).join('\n')}
         </body>
       </html>`
   )

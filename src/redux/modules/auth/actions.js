@@ -52,15 +52,18 @@ function unsetCookie () {
 * Action creators
 * * * * * * * * */
 
-export const isVerified = (req, { auth }) => {
-  const cookie = getCookie(req)
-  return cookie && cookie.accessToken && auth.verified && auth.user
+export const isVerified = ({ auth }) => {
+  return auth.verified && auth.user
 }
 
 export const verify = () => {
   return {
     types: [VERIFY, VERIFY_SUCCESS, VERIFY_FAIL],
     promise: async ({ client }) => {
+      if (!getCookie()) {
+        return Promise.reject(new Error('No cookie to verify'))
+      }
+
       try {
         return await client.get('/auth/verify')
       } catch (error) {
