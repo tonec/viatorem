@@ -1,14 +1,13 @@
 import * as types from './actions'
 
 const initialState = {
-  loading: false,
-  loaded: false,
+  verifying: false,
+  verified: false,
   loggingIn: false,
   loggedIn: false,
   loginError: '',
-  registeringIn: false,
+  registering: false,
   registerError: '',
-  accessToken: {},
   loggingOut: false,
   logoutError: '',
   user: null,
@@ -17,24 +16,24 @@ const initialState = {
 
 export default function reducer (state = initialState, action = {}) {
   switch (action.type) {
-    case types.LOAD:
+    case types.VERIFY:
       return {
         ...state,
-        loading: true
+        verifying: true
       }
-    case types.LOAD_SUCCESS:
+    case types.VERIFY_SUCCESS:
       return {
         ...state,
-        loading: false,
-        loaded: true,
-        accessToken: action.result.accessToken,
-        user: action.result.user
+        verifying: false,
+        verified: true,
+        user: action.result
       }
-    case types.LOAD_FAIL:
+    case types.VERIFY_FAIL:
       return {
         ...state,
-        loading: false,
-        loaded: false,
+        verifying: false,
+        verified: false,
+        user: null,
         error: action.error
       }
     case types.LOGIN:
@@ -46,8 +45,7 @@ export default function reducer (state = initialState, action = {}) {
       return {
         ...state,
         loggingIn: false,
-        loaded: true,
-        accessToken: action.result.accessToken,
+        verified: true,
         user: action.result
       }
     case types.LOGIN_FAIL:
@@ -59,17 +57,17 @@ export default function reducer (state = initialState, action = {}) {
     case types.REGISTER:
       return {
         ...state,
-        registeringIn: true
+        registering: true
       }
     case types.REGISTER_SUCCESS:
       return {
         ...state,
-        registeringIn: false
+        registering: false
       }
     case types.REGISTER_FAIL:
       return {
         ...state,
-        registeringIn: false,
+        registering: false,
         registerError: action.error
       }
     case types.LOGOUT:
@@ -81,7 +79,6 @@ export default function reducer (state = initialState, action = {}) {
       return {
         ...state,
         loggingOut: false,
-        accessToken: null,
         user: null
       }
     case types.LOGOUT_FAIL:

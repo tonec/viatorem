@@ -30,6 +30,7 @@ export default ({ clientStats }) => async (req, res, next) => {
   )
 
   await trigger('fetch', components, {
+    req,
     store,
     match,
     params,

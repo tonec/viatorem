@@ -7,9 +7,9 @@ import cookie from 'js-cookie'
 
 const prefix = '@auth'
 
-export const LOAD = `${prefix}/LOAD`
-export const LOAD_SUCCESS = `${prefix}/LOAD_SUCCESS`
-export const LOAD_FAIL = `${prefix}/LOAD_FAIL`
+export const VERIFY = `${prefix}/VERIFY`
+export const VERIFY_SUCCESS = `${prefix}/VERIFY_SUCCESS`
+export const VERIFY_FAIL = `${prefix}/VERIFY_FAIL`
 
 export const LOGIN = `${prefix}/LOGIN`
 export const LOGIN_SUCCESS = `${prefix}/LOGIN_SUCCESS`
@@ -27,60 +27,45 @@ export const LOGOUT_FAIL = `${prefix}/LOGOUT_FAIL`
 * Action helpers
 * * * * * * * * */
 
-function checkCookie (req) {
-  return new Promise((resolve, reject) => {
-    let authCookie = null
+function getCookie (req) {
+  let authCookie = null
 
-    if (process.env.__SERVER__) {
-      authCookie = req.cookies.viatorem ? JSON.parse(req.cookies.viatorem) : null
-    } else {
-      authCookie = cookie.getJSON('viatorem')
-    }
+  if (process.env.__SERVER__) {
+    authCookie = req.cookies && req.cookies.viatorem ? JSON.parse(req.cookies.viatorem) : null
+  } else {
+    authCookie = cookie.getJSON('viatorem')
+  }
 
-    if (authCookie) {
-      return resolve(authCookie)
-    }
-
-    return reject(new Error('Check cookie failed.'))
-  })
+  return authCookie
 }
 
 function setCookie (response) {
-  return new Promise((resolve, reject) => {
-    try {
-      const options = response.expires ? { expires: response.expires } : undefined
-      resolve(cookie.set('viatorem', response, options))
-    } catch (error) {
-      reject(error)
-    }
-  })
+  const options = response.expires ? { expires: response.expires } : undefined
+  cookie.set('viatorem', response, options)
 }
 
 function unsetCookie () {
-  return new Promise((resolve, reject) => {
-    try {
-      resolve(cookie.remove('viatorem'))
-    } catch (error) {
-      reject(error)
-    }
-  })
+  cookie.remove('viatorem')
 }
 
 /*
 * Action creators
 * * * * * * * * */
 
-export const isLoaded = globalState => {
-  return globalState.auth && globalState.auth.loaded
+export const isVerified = (req, { auth }) => {
+  const cookie = getCookie(req)
+  return cookie && cookie.accessToken && auth.verified && auth.user
 }
 
-export const load = () => {
+export const verify = () => {
   return {
-    types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
-    promise: async ({ client, req }) => {
-      const response = await checkCookie(req)
-      await setCookie(response)
-      return response
+    types: [VERIFY, VERIFY_SUCCESS, VERIFY_FAIL],
+    promise: async ({ client }) => {
+      try {
+        return await client.get('/auth/verify')
+      } catch (error) {
+        throw error
+      }
     }
   }
 }
@@ -104,7 +89,7 @@ export const login = data => {
     promise: async ({ client }) => {
       try {
         const response = await client.post('/auth/login', data)
-        await setCookie(response)
+        setCookie(response)
         return response
       } catch (error) {
         catchValidation(error)
@@ -117,8 +102,8 @@ export const login = data => {
 export const logout = () => {
   return {
     types: [LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAIL],
-    promise: async ({ client }) => {
-      await unsetCookie()
+    promise: ({ client }) => {
+      unsetCookie()
     }
   }
 }

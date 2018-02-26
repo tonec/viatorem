@@ -4,14 +4,15 @@ import { connect } from 'react-redux'
 import { push as pushState } from 'react-router-redux'
 import { renderRoutes } from 'react-router-config'
 import { provideHooks } from 'redial'
-import { isLoaded, load as loadAuth } from 'redux/modules/auth/actions'
+import { isVerified, verify } from 'redux/modules/auth/actions'
 
 import 'assets/stylesheets/theme.global.scss'
 
 @provideHooks({
-  fetch: async ({ store: { dispatch, getState } }) => {
-    if (!isLoaded(getState())) {
-      await dispatch(loadAuth()).catch(() => null)
+  fetch: async ({ req, store: { dispatch, getState } }) => {
+    if (!isVerified(req, getState())) {
+      console.log('verify...')
+      await dispatch(verify()).catch(() => null)
     }
   }
 })
