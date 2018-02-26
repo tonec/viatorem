@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { renderRoutes } from 'react-router-config'
 import { provideHooks } from 'redial'
+
 import 'assets/stylesheets/theme.global.scss'
-import styles from './styles.scss'
 
 // @provideHooks({
 //   fetch: locals => console.log('App triggered!'),
@@ -12,7 +12,7 @@ import styles from './styles.scss'
 class App extends Component {
   render () {
     return (
-      <div className={styles.container}>
+      <div>
         {renderRoutes(this.props.route.routes)}
       </div>
     )

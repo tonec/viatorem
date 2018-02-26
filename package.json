@@ -27,6 +27,7 @@
     "express": "^4.15.2",
     "history": "^4.6.3",
     "http-proxy": "^1.16.2",
+    "lru-memoize": "^1.0.2",
     "nprogress": "^0.2.0",
     "qhistory": "^1.0.0",
     "qs": "^6.5.1",
@@ -43,6 +44,8 @@
     "redux": "^3.7.0",
     "redux-devtools": "^3.4.1",
     "redux-devtools-extension": "^2.13.2",
+    "redux-form": "^7.2.3",
+    "redux-form-antd": "^0.1.16",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0"
   },

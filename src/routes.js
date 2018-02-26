@@ -1,6 +1,6 @@
 import App from './App'
 import Home from 'containers/Home/Loadable'
-import About from 'containers/About/Loadable'
+import Login from 'containers/Login/Loadable'
 
 export default [
   {
@@ -12,8 +12,8 @@ export default [
         exact: true
       },
       {
-        component: About,
-        path: '/about',
+        component: Login,
+        path: '/login',
         exact: true
       }
     ]

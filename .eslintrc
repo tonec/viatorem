@@ -16,7 +16,8 @@
     "jsx-quotes": ["error", "prefer-double"],
     "react/jsx-no-bind": [1, {"ignoreRefs": false, "allowArrowFunctions": true, "allowBind": false}],
     "no-unused-vars": [1],
-    "no-return-assign": 0
+    "no-return-assign": 0,
+    "padded-blocks": 0,
   },
   "env": {
     "jest/globals": true

@@ -119,10 +119,12 @@ module.exports = {
       filename: '[name].js',
       entry: {
         vendor: [
+          'antd',
           'react',
           'react-dom',
           'react-redux',
           'redux',
+          'redux-form',
           'redux-thunk',
           'react-router',
           'react-router-dom',

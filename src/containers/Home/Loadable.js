@@ -1,5 +1,5 @@
 import Loadable from 'react-loadable'
-import Loading from 'components/Loading'
+import { Loading } from 'components'
 
 let LoadableExample = Loadable({
   loader: () => import('./Home'),
