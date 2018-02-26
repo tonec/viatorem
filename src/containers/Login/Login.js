@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { login } from 'redux/modules/auth/actions'
 import { OneColumnThin } from 'components'
 import LoginForm from './LoginForm/LoginForm'
 
@@ -8,11 +10,7 @@ class Login extends Component {
     login: PropTypes.func
   }
 
-  static defaultProps = {
-    login: data => console.log(data)
-  }
-
-  handleSubmit = async data => {
+  handleSubmit = data => {
     return this.props.login(data)
   }
 
@@ -25,4 +23,6 @@ class Login extends Component {
   }
 }
 
-export default Login
+const mapStateToProps = () => ({})
+
+export default connect(mapStateToProps, { login })(Login)

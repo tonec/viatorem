@@ -1,14 +1,14 @@
 import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
-import thunk from 'redux-thunk'
 import apiClient from 'utils/apiClient'
 import { routerMiddleware } from 'react-router-redux'
+import clientMiddleware from './middleware/clientMiddleware'
 import * as reducers from './modules'
 
 const { __CLIENT__, __DEVELOPMENT__, __DEVTOOLS__, NODE_ENV } = process.env
 
 export default (history, preloadedState, req) => {
   const client = apiClient(req)
-  const middleware = [thunk.withExtraArgument(client), routerMiddleware(history)]
+  const middleware = [clientMiddleware({ client }), routerMiddleware(history)]
 
   if (__CLIENT__ && __DEVELOPMENT__) {
     const logger = require('redux-logger').createLogger({
@@ -41,8 +41,6 @@ export default (history, preloadedState, req) => {
 
   return { store }
 }
-
-
 
 //   const finalCreateStore = compose(...enhancers)(_createStore)
 //   const reducers = createReducers()
