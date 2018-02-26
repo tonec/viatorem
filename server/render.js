@@ -53,9 +53,11 @@ export default ({ clientStats }) => async (req, res, next) => {
 
   const state = store.getState()
   const stateJson = JSON.stringify(state)
-  const bundles = getBundles(require('./stats.json'), modules)
+  const bundles = getBundles(require('../buildClient/stats.json'), modules)
   const styles = bundles.filter(bundle => bundle.file.endsWith('.css'))
   const scripts = bundles.filter(bundle => bundle.file.endsWith('.js'))
+
+  console.log('Bundles: ', bundles)
 
   return res.send(
     `<!doctype html>

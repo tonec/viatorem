@@ -1,6 +1,7 @@
 import App from './App'
 import Home from 'containers/Home/Home'
 import Login from 'containers/Login/Loadable'
+import Register from 'containers/Register/Loadable'
 
 export default [
   {
@@ -13,8 +14,11 @@ export default [
       },
       {
         component: Login,
-        path: '/login',
-        exact: true
+        path: '/login'
+      },
+      {
+        component: Register,
+        path: '/register'
       }
     ]
   }

@@ -102,7 +102,7 @@ module.exports = {
       minChunks: Infinity
     }),
     new ReactLoadablePlugin({
-      filename: './server/stats.json'
+      filename: './buildClient/stats.json'
     }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),

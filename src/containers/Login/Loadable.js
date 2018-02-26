@@ -1,9 +1,9 @@
 import Loadable from 'react-loadable'
 import { Loading } from 'components'
 
-let LoadableExample = Loadable({
+let LoginLoadable = Loadable({
   loader: () => import('./Login'),
   loading: Loading
 })
 
-export default LoadableExample
+export default LoginLoadable
