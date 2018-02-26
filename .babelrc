@@ -5,14 +5,14 @@
     "stage-0"
   ],
   "plugins": [
-    "transform-decorators-legacy"
+    "transform-decorators-legacy",
+    "syntax-dynamic-import",
+    "react-loadable/babel"
   ],
   "env": {
     "development": {
       "plugins": [
-        "react-hot-loader/babel",
-        "syntax-dynamic-import",
-        "react-loadable/babel"
+        "react-hot-loader/babel"
       ]
     }
   }

@@ -18,7 +18,7 @@ export default class RegisterForm extends Component {
     const { handleSubmit, error } = this.props
 
     return (
-      <Form layout="inline" onSubmit={handleSubmit}>
+      <Form layout="vertical" onSubmit={handleSubmit}>
         <Field
           name="name"
           type="text"

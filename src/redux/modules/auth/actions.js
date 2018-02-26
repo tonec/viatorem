@@ -10,12 +10,15 @@ const prefix = '@auth'
 export const LOAD = `${prefix}/LOAD`
 export const LOAD_SUCCESS = `${prefix}/LOAD_SUCCESS`
 export const LOAD_FAIL = `${prefix}/LOAD_FAIL`
+
 export const LOGIN = `${prefix}/LOGIN`
 export const LOGIN_SUCCESS = `${prefix}/LOGIN_SUCCESS`
 export const LOGIN_FAIL = `${prefix}/LOGIN_FAIL`
+
 export const REGISTER = `${prefix}/REGISTER`
 export const REGISTER_SUCCESS = `${prefix}/REGISTER_SUCCESS`
 export const REGISTER_FAIL = `${prefix}/REGISTER_FAIL`
+
 export const LOGOUT = `${prefix}/LOGOUT`
 export const LOGOUT_SUCCESS = `${prefix}/LOGOUT_SUCCESS`
 export const LOGOUT_FAIL = `${prefix}/LOGOUT_FAIL`
@@ -67,11 +70,11 @@ function unsetCookie () {
 * Action creators
 * * * * * * * * */
 
-export function isLoaded (globalState) {
+export const isLoaded = globalState => {
   return globalState.auth && globalState.auth.loaded
 }
 
-export function load () {
+export const load = () => {
   return {
     types: [LOAD, LOAD_SUCCESS, LOAD_FAIL],
     promise: async ({ client, req }) => {
@@ -82,12 +85,12 @@ export function load () {
   }
 }
 
-export function register (data) {
+export const register = data => {
   return {
     types: [REGISTER, REGISTER_SUCCESS, REGISTER_FAIL],
     promise: async ({ client }) => {
       try {
-        return await client.post('/api/auth/register', data)
+        return await client.post('/auth/register', data)
       } catch (error) {
         throw error
       }
@@ -95,8 +98,7 @@ export function register (data) {
   }
 }
 
-export function login (data) {
-  console.log('login', data)
+export const login = data => {
   return {
     types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
     promise: async ({ client }) => {
@@ -112,7 +114,7 @@ export function login (data) {
   }
 }
 
-export function logout () {
+export const logout = () => {
   return {
     types: [LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAIL],
     promise: async ({ client }) => {
