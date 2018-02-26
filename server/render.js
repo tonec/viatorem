@@ -57,8 +57,6 @@ export default ({ clientStats }) => async (req, res, next) => {
   const styles = bundles.filter(bundle => bundle.file.endsWith('.css'))
   const scripts = bundles.filter(bundle => bundle.file.endsWith('.js'))
 
-  console.log('Bundles: ', bundles)
-
   return res.send(
     `<!doctype html>
       <html>
