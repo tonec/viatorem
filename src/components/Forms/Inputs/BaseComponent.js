@@ -1,8 +1,21 @@
 import React, { PureComponent } from 'react'
+import { Icon } from 'antd'
 import FormItem from 'antd/lib/form/FormItem'
+
+const specialInputsIcons = name => {
+  const inputs = {
+    name: 'user',
+    email: 'red-envelope',
+    password: 'lock',
+    password_confirmation: 'lock'
+  }
+
+  return name in inputs ? <Icon type={inputs[name]} /> : null
+}
 
 export default function createComponent (AntdComponent, mapProps) {
   class InputComponent extends PureComponent {
+
     getRenderedComponent () {
       return this.componentRef
     }
@@ -16,6 +29,8 @@ export default function createComponent (AntdComponent, mapProps) {
         this.props
       )
 
+      const icon = specialInputsIcons(rest.name)
+
       return (
         <FormItem
           label={label}
@@ -28,7 +43,7 @@ export default function createComponent (AntdComponent, mapProps) {
           validateStatus={validateStatus}
           colon={colon}
         >
-          <AntdComponent {...rest} />
+          {icon ? <AntdComponent prefix={icon} {...rest} /> : <AntdComponent {...rest} />}
         </FormItem>
       )
     }

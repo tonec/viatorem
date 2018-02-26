@@ -17,7 +17,7 @@ export default class LoginForm extends Component {
     const { handleSubmit, error } = this.props
 
     return (
-      <Form layout="inline" onSubmit={handleSubmit}>
+      <Form layout="vertical" onSubmit={handleSubmit}>
         <Field
           name="email"
           type="text"
