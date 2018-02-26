@@ -41,30 +41,3 @@ export default (history, preloadedState, req) => {
 
   return { store }
 }
-
-//   const finalCreateStore = compose(...enhancers)(_createStore)
-//   const reducers = createReducers()
-//   const noopReducers = getNoopReducers(reducers, data)
-//   const store = finalCreateStore(combine({ ...noopReducers, ...reducers }, persistConfig), data)
-
-//   store.asyncReducers = {}
-//   store.inject = _.partial(inject, store, _, persistConfig)
-
-//   if (persistConfig) {
-//     const persistoid = createPersistoid(persistConfig)
-//     store.subscribe(() => {
-//       persistoid.update(store.getState())
-//     })
-//     store.dispatch({ type: REGISTER })
-//   }
-
-//   if (__DEVELOPMENT__ && module.hot) {
-//     module.hot.accept('./reducer', () => {
-//       let reducer = require('./reducer')
-//       reducer = combine((reducer.__esModule ? reducer.default : reducer)(store.asyncReducers), persistConfig)
-//       store.replaceReducer(reducer)
-//     })
-//   }
-
-//   return store
-// }
