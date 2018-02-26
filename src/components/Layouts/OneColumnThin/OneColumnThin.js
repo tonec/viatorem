@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
 import classNames from 'classnames'
-import { Layout } from 'antd'
+import { Layout, Row, Col } from 'antd'
 import { Navigation } from 'containers'
 
 const { Header, Content } = Layout
@@ -29,7 +29,13 @@ const OneColumnThin = ({ title, className, children, ...props }) => {
       <Header>
         <Navigation />
       </Header>
-      <Content style={{ padding: '0 50px' }}>{children}</Content>
+      <Content>
+        <Row style={{ padding: '50px' }}>
+          <Col span={12} offset={6}>
+            {children}
+          </Col>
+        </Row>
+      </Content>
     </div>
   )
 }

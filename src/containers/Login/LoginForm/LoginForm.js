@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { reduxForm, Field, propTypes } from 'redux-form'
+import { Form, Button } from 'antd'
 import { TextField } from 'redux-form-antd'
 import loginValidation from './loginValidation'
 
@@ -16,19 +17,26 @@ export default class LoginForm extends Component {
     const { handleSubmit, error } = this.props
 
     return (
-      <form className="form-horizontal" onSubmit={handleSubmit}>
-        <Field name="email" type="text" component={TextField} label="Email" />
+      <Form layout="inline" onSubmit={handleSubmit}>
+        <Field
+          name="email"
+          type="text"
+          component={TextField}
+          label="Email"
+        />
         <Field
           name="password"
           type="password"
           component={TextField}
           label="Password"
         />
+        <Form.Item>
+          <Button type="primary" htmlType="submit">
+            Log In
+          </Button>
+        </Form.Item>
         {error && <p className="help is-danger">{error}</p>}
-        <button className="button is-primary" type="submit">
-          Log In
-        </button>
-      </form>
+      </Form>
     )
   }
 }

@@ -107,7 +107,6 @@
   "lint-staged": {
     "linters": {
       "*.js": [
-        "prettier --single-quote --semi=false --write",
         "eslint --fix",
         "git add"
       ]
