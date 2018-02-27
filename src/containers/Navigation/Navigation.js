@@ -8,12 +8,12 @@ import { Anchor } from 'components'
 
 @connect(({ auth }) => ({
   user: auth.user
-}), { logout })
+}))
 class Navigation extends Component {
 
   static propTypes = {
-    user: PropTypes.shape({ name: PropTypes.string }),
-    logout: PropTypes.func.isRequired
+    dispatch: PropTypes.func.isRequired,
+    user: PropTypes.shape({ name: PropTypes.string })
   }
 
   static defaultProps = {
@@ -21,8 +21,7 @@ class Navigation extends Component {
   }
 
   handleLogout = event => {
-    console.log('handling logout')
-    this.props.logout()
+    this.props.dispatch(logout())
   }
 
   render () {
@@ -35,6 +34,9 @@ class Navigation extends Component {
         defaultSelectedKeys={['2']}
         style={{ lineHeight: '64px' }}
       >
+        <Menu.Item key="/">
+          <Link to="/">Home</Link>
+        </Menu.Item>
         {!user && (
           <Menu.Item key="/login">
             <Link to="/login">Log in</Link>
