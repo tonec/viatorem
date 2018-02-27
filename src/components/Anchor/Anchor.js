@@ -7,6 +7,7 @@ function isTrivialHref (href) {
 }
 
 class Anchor extends Component {
+
   static propTypes = {
     href: PropTypes.string,
     onClick: PropTypes.func,
@@ -53,14 +54,7 @@ class Anchor extends Component {
   }
 
   render () {
-    const {
-      tabIndex,
-      role,
-      disabled,
-      onKeyDown,
-      children,
-      ...props
-    } = this.props
+    const { tabIndex, role, disabled, onKeyDown, children, ...props } = this.props
 
     if (isTrivialHref(props.href)) {
       props.role = props.role || 'button'
@@ -74,7 +68,6 @@ class Anchor extends Component {
       props.style = { pointerEvents: 'none', ...props.style }
     }
 
-    /* eslint-disable jsx-a11y/no-static-element-interactions */
     return (
       <a
         {...props}
@@ -84,7 +77,6 @@ class Anchor extends Component {
         {children}
       </a>
     )
-    /* eslint-disable jsx-a11y/no-static-element-interactions */
   }
 }
 

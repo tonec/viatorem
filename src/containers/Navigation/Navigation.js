@@ -6,7 +6,9 @@ import { Link } from 'react-router-dom'
 import { Menu } from 'antd'
 import { Anchor } from 'components'
 
-@connect(() => ({}), { logout })
+@connect(({ auth }) => ({
+  user: auth.user
+}), { logout })
 class Navigation extends Component {
 
   static propTypes = {
@@ -19,7 +21,7 @@ class Navigation extends Component {
   }
 
   handleLogout = event => {
-    event.preventDefault()
+    console.log('handling logout')
     this.props.logout()
   }
 
@@ -34,29 +36,31 @@ class Navigation extends Component {
         style={{ lineHeight: '64px' }}
       >
         {!user && (
-          <Menu.Item>
+          <Menu.Item key="/login">
             <Link to="/login">Log in</Link>
           </Menu.Item>
         )}
         {!user && (
-          <Menu.Item>
+          <Menu.Item key="/register">
             <Link to="/register">Register</Link>
           </Menu.Item>
         )}
         {user && (
-          <Menu.Item>
+          <Menu.Item key="/dashboard">
             <Link to="/dashboard">Dashboard</Link>
           </Menu.Item>
         )}
         {user && (
-          <Menu.Item>
+          <Menu.Item key="/trip">
             <Link to="/trip">Trip</Link>
           </Menu.Item>
         )}
         {user && (
-          <Anchor className="navbar-item" onClick={this.handleLogout}>
-            Log out
-          </Anchor>
+          <Menu.Item key="/logout">
+            <Anchor onClick={this.handleLogout}>
+              Log out
+            </Anchor>
+          </Menu.Item>
         )}
       </Menu>
     )
