@@ -20,8 +20,6 @@ export const REGISTER_SUCCESS = `${prefix}/REGISTER_SUCCESS`
 export const REGISTER_FAIL = `${prefix}/REGISTER_FAIL`
 
 export const LOGOUT = `${prefix}/LOGOUT`
-export const LOGOUT_SUCCESS = `${prefix}/LOGOUT_SUCCESS`
-export const LOGOUT_FAIL = `${prefix}/LOGOUT_FAIL`
 
 /*
 * Action helpers
@@ -58,7 +56,7 @@ export const isVerified = ({ auth }) => {
 
 export const verify = () => {
   return {
-    types: [VERIFY, VERIFY_SUCCESS, VERIFY_FAIL],
+    types: [ VERIFY, VERIFY_SUCCESS, VERIFY_FAIL ],
     promise: async ({ client }) => {
       if (!getCookie()) {
         return Promise.reject(new Error('No cookie to verify'))
@@ -75,7 +73,7 @@ export const verify = () => {
 
 export const register = data => {
   return {
-    types: [REGISTER, REGISTER_SUCCESS, REGISTER_FAIL],
+    types: [ REGISTER, REGISTER_SUCCESS, REGISTER_FAIL ],
     promise: async ({ client }) => {
       try {
         return await client.post('/auth/register', data)
@@ -88,7 +86,7 @@ export const register = data => {
 
 export const login = data => {
   return {
-    types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
+    types: [ LOGIN, LOGIN_SUCCESS, LOGIN_FAIL ],
     promise: async ({ client }) => {
       try {
         const response = await client.post('/auth/login', data)
@@ -103,10 +101,8 @@ export const login = data => {
 }
 
 export const logout = () => {
+  unsetCookie()
   return {
-    types: [LOGOUT, LOGOUT_SUCCESS, LOGOUT_FAIL],
-    promise: ({ client }) => {
-      unsetCookie()
-    }
+    type: LOGOUT
   }
 }

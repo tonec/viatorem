@@ -8,13 +8,12 @@ const initialState = {
   loginError: '',
   registering: false,
   registerError: '',
-  loggingOut: false,
-  logoutError: '',
   user: null,
   error: null
 }
 
 export default function reducer (state = initialState, action = {}) {
+  console.log('action', action)
   switch (action.type) {
     case types.VERIFY:
       return {
@@ -73,19 +72,8 @@ export default function reducer (state = initialState, action = {}) {
     case types.LOGOUT:
       return {
         ...state,
-        loggingOut: true
-      }
-    case types.LOGOUT_SUCCESS:
-      return {
-        ...state,
-        loggingOut: false,
+        loggedout: true,
         user: null
-      }
-    case types.LOGOUT_FAIL:
-      return {
-        ...state,
-        loggingOut: false,
-        logoutError: action.error
       }
     default:
       return state
