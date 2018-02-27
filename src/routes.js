@@ -6,6 +6,7 @@ import Home from 'containers/Home/Home'
 import Login from 'containers/Login/Loadable'
 import Register from 'containers/Register/Loadable'
 import Dashboard from 'containers/Dashboard/Loadable'
+import Trip from 'containers/Trip/Loadable'
 import { NotFound } from 'components'
 
 const locationHelper = locationHelperBuilder({})
@@ -33,6 +34,7 @@ export default [
       { path: '/login', component: Login },
       { path: '/register', component: isNotAuthenticated(Register) },
       { path: '/dashboard', component: isAuthenticated(Dashboard) },
+      { path: '/trip', component: isAuthenticated(Trip) },
       { component: NotFound }
     ]
   }

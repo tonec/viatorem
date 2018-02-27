@@ -14,7 +14,7 @@ const datePickerMap = customMap(({input: {onChange, value}, dateFormat}) => {
 
 // datepicker has some problems with formating this this component doesn't have such problems
 const datePickerMapRU = customMap(
-  ({input: {onChange, value}, displayFormat, valueFormat}) => {
+  ({input: {onChange, value = {}}, displayFormat, valueFormat}) => {
     if (value !== '') {
       value = moment(value)
     }
