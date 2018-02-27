@@ -39,7 +39,7 @@ export default [
         path: '/register'
       },
       {
-        component: Dashboard,
+        component: isAuthenticated(Dashboard),
         path: '/dashboard'
       }
     ]
