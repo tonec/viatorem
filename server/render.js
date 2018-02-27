@@ -1,3 +1,5 @@
+import fs from 'fs'
+import path from 'path'
 import React from 'react'
 import ReactDOM from 'react-dom/server'
 import { Provider } from 'react-redux'
@@ -54,9 +56,16 @@ export default ({ clientStats }) => async (req, res, next) => {
 
   const state = store.getState()
   const stateJson = JSON.stringify(state)
-  const bundles = getBundles(require('../buildClient/stats.json'), modules)
-  const styles = bundles.filter(bundle => bundle.file.endsWith('.css'))
-  const scripts = bundles.filter(bundle => bundle.file.endsWith('.js'))
+
+  let bundles = []
+  let styles = []
+  let scripts = []
+
+  if (process.env.NODE_ENV !== 'development') {
+    bundles = getBundles(require('../buildClient/stats.json'), modules)
+    styles = bundles.filter(bundle => bundle && bundle.file.endsWith('.css'))
+    scripts = bundles.filter(bundle => bundle && bundle.file.endsWith('.js'))
+  }
 
   return res.send(
     `<!doctype html>
@@ -65,6 +74,7 @@ export default ({ clientStats }) => async (req, res, next) => {
           <meta charset="utf-8">
           <title>Viatorem</title>
           <link rel="stylesheet" type="text/css" href="/static/styles.global.css">
+          <link rel="stylesheet" type="text/css" href="/static/styles.css">
           <link rel="shortcut icon" href="#" />
           ${styles.map(style => `<link rel="stylesheet" href="/static/${style.file}">`).join('\n')}
         </head>

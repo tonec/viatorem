@@ -76,15 +76,15 @@ module.exports = {
     extensions: ['.js', '.css']
   },
   plugins: [
+    new ReactLoadablePlugin({
+      filename: './buildClient/stats.json'
+    }),
     new StatsPlugin('stats.json'),
     ExtractGlobalCSS,
     ExtractCSS,
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest',
       minChunks: Infinity
-    }),
-    new ReactLoadablePlugin({
-      filename: './server/stats.json'
     }),
     new webpack.DefinePlugin({
       'process.env': {
