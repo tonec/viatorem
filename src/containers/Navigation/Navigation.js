@@ -6,13 +6,15 @@ import { Link } from 'react-router-dom'
 import { Menu } from 'antd'
 import { Anchor } from 'components'
 
-@connect(({ auth }) => ({
-  user: auth.user
+@connect(({ auth, router }) => ({
+  user: auth.user,
+  currentPath: router.location.pathname
 }))
 class Navigation extends Component {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
+    currentPath: PropTypes.string.isRequired,
     user: PropTypes.shape({ name: PropTypes.string })
   }
 
@@ -24,46 +26,37 @@ class Navigation extends Component {
     this.props.dispatch(logout())
   }
 
+  renderMenuItem (path, name, handler) {
+    if (handler) {
+      return (
+        <Menu.Item key={path}>
+          <Anchor onClick={handler}>{name}</Anchor>
+        </Menu.Item>
+      )
+    }
+
+    return (
+      <Menu.Item key={path}>
+        <Link to={path}>{name}</Link>
+      </Menu.Item>
+    )
+  }
+
   render () {
-    const { user } = this.props
+    const { user, currentPath } = this.props
 
     return (
       <Menu
         theme="dark"
         mode="horizontal"
-        defaultSelectedKeys={['2']}
-        style={{ lineHeight: '64px' }}
+        selectedKeys={[currentPath]}
       >
-        <Menu.Item key="/">
-          <Link to="/">Home</Link>
-        </Menu.Item>
-        {!user && (
-          <Menu.Item key="/login">
-            <Link to="/login">Log in</Link>
-          </Menu.Item>
-        )}
-        {!user && (
-          <Menu.Item key="/register">
-            <Link to="/register">Register</Link>
-          </Menu.Item>
-        )}
-        {user && (
-          <Menu.Item key="/dashboard">
-            <Link to="/dashboard">Dashboard</Link>
-          </Menu.Item>
-        )}
-        {user && (
-          <Menu.Item key="/trip">
-            <Link to="/trip">Trip</Link>
-          </Menu.Item>
-        )}
-        {user && (
-          <Menu.Item key="/logout">
-            <Anchor onClick={this.handleLogout}>
-              Log out
-            </Anchor>
-          </Menu.Item>
-        )}
+        {this.renderMenuItem('/', 'Home')}
+        {!user && this.renderMenuItem('/login', 'Login')}
+        {!user && this.renderMenuItem('/register', 'Register')}
+        {user && this.renderMenuItem('/dashboard', 'Dashboard')}
+        {user && this.renderMenuItem('/trip', 'Trip')}
+        {user && this.renderMenuItem('/logout', 'Logout', this.handleLogout)}
       </Menu>
     )
   }
