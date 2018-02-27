@@ -5,12 +5,12 @@ import { register } from 'redux/modules/auth/actions'
 import { OneColumnThin } from 'components'
 import RegisterForm from 'containers/Register/RegisterForm/RegisterForm'
 
-@connect(() => ({}), { register })
+@connect(() => ({}))
 export default class Register extends Component {
 
   static propTypes = {
+    dispatch: PropTypes.func.isRequired,
     location: PropTypes.shape({ state: PropTypes.object }).isRequired,
-    register: PropTypes.func.isRequired
   }
 
   getInitialValues = () => {
@@ -19,7 +19,7 @@ export default class Register extends Component {
   }
 
   register = data => {
-    this.props.register(data)
+    this.props.dispatch(register(data))
   }
 
   render () {

@@ -5,15 +5,15 @@ import { login } from 'redux/modules/auth/actions'
 import { OneColumnThin } from 'components'
 import LoginForm from './LoginForm/LoginForm'
 
-@connect(() => ({}), { login })
+@connect(() => ({}))
 export default class Login extends Component {
 
   static propTypes = {
-    login: PropTypes.func
+    dispatch: PropTypes.func.isRequired
   }
 
   handleSubmit = data => {
-    return this.props.login(data)
+    this.props.dispatch(login(data))
   }
 
   render () {
