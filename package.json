@@ -10,6 +10,8 @@
     "start:prod": "npm run build && npm run serve",
     "serve": "cross-env NODE_ENV=production node buildServer/index.js",
     "build": "npm run build:client && npm run build:server && npm run build:node",
+    "dev:client": "rimraf buildClient && cross-env NODE_ENV=production webpack --progress -p --config webpack/client.dev.js",
+    "dev:server": "rimraf buildServer && cross-env NODE_ENV=production webpack --progress -p --config webpack/server.dev.js",
     "build:client": "rimraf buildClient && cross-env NODE_ENV=production webpack --progress -p --config webpack/client.prod.js",
     "build:server": "rimraf buildServer && cross-env NODE_ENV=production webpack --progress -p --config webpack/server.prod.js",
     "build:node": "cross-env NODE_ENV=production babel server/index.js -o buildServer/index.js",
