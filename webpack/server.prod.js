@@ -60,7 +60,7 @@ module.exports = {
       path.resolve('./src'),
       path.resolve('./node_modules')
     ],
-    extensions: ['.js', '.css']
+    extensions: ['.js', '.sass', '.scss']
   },
   plugins: [
     new webpack.optimize.LimitChunkCountPlugin({

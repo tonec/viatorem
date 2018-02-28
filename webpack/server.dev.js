@@ -43,17 +43,6 @@ module.exports = {
         use: 'babel-loader'
       },
       {
-        test: /\.css$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'css-loader/locals',
-          options: {
-            modules: true,
-            localIdentName: '[name]__[local]--[hash:base64:5]'
-          }
-        }
-      },
-      {
         test: /\.scss$/,
         exclude: /node_modules/,
         use: [
@@ -75,7 +64,10 @@ module.exports = {
     ]
   },
   resolve: {
-    modules: [path.resolve('./src'), path.resolve('./node_modules')],
+    modules: [
+      path.resolve('./src'),
+      path.resolve('./node_modules')
+    ],
     extensions: ['.js', '.sass', '.scss']
   },
   plugins: [
