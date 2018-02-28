@@ -2,10 +2,6 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import createChainedFunction from 'utils/createChainedFunction'
 
-function isTrivialHref (href) {
-  return !href || href.trim() === '#'
-}
-
 class Anchor extends Component {
 
   static propTypes = {
@@ -13,7 +9,6 @@ class Anchor extends Component {
     onClick: PropTypes.func,
     onKeyDown: PropTypes.func,
     disabled: PropTypes.bool,
-    role: PropTypes.string,
     tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     className: PropTypes.string,
     children: PropTypes.node.isRequired
@@ -24,15 +19,18 @@ class Anchor extends Component {
     onClick: null,
     onKeyDown: null,
     disabled: false,
-    role: 'a',
     tabIndex: 0,
     className: ''
+  }
+
+  isTrivialHref (href) {
+    return !href || href.trim() === '#'
   }
 
   handleClick = event => {
     const { disabled, href, onClick } = this.props
 
-    if (disabled || isTrivialHref(href)) {
+    if (disabled || this.isTrivialHref(href)) {
       event.preventDefault()
     }
 
@@ -54,12 +52,9 @@ class Anchor extends Component {
   }
 
   render () {
-    const { tabIndex, role, disabled, onKeyDown, children, ...props } = this.props
+    const { tabIndex, disabled, onKeyDown, children, ...props } = this.props
 
-    if (isTrivialHref(props.href)) {
-      props.role = props.role || 'button'
-      // we want to make sure there is a href attribute on the node
-      // otherwise, the cursor incorrectly styled (except with role='button')
+    if (this.isTrivialHref(props.href)) {
       props.href = props.href || '#'
     }
 

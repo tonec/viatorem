@@ -20,7 +20,7 @@
     "cm": "git-cz",
     "lint": "eslint --fix src server webpack",
     "format": "prettier --single-quote --semi=false --write '{src,server,webpack}/**/*.js' && npm run lint",
-    "test": "jest"
+    "test": "jest --watch"
   },
   "dependencies": {
     "antd": "^3.2.2",
@@ -89,10 +89,12 @@
     "jest": "^22.4.2",
     "lint-staged": "^4.3.0",
     "node-sass": "^4.7.2",
+    "nyc": "^11.4.1",
     "postcss-functions": "^3.0.0",
     "postcss-loader": "^2.1.1",
     "prettier": "^1.4.4",
     "react-hot-loader": "^3.1.1",
+    "react-test-renderer": "^16.2.0",
     "redux-devtools-dock-monitor": "^1.1.3",
     "redux-devtools-log-monitor": "^1.4.0",
     "redux-seamless-immutable": "^0.4.0",

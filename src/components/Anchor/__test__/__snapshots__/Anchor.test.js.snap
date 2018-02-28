@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Anchor (snapshot) renders according to snapshot 1`] = `
+<a
+  className="test-class-name"
+  href="http://www.example.com"
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  style={
+    Object {
+      "pointerEvents": "none",
+    }
+  }
+  tabIndex={-1}
+>
+  Link text
+</a>
+`;
