@@ -1,7 +1,6 @@
-import fs from 'fs'
-import path from 'path'
 import React from 'react'
 import ReactDOM from 'react-dom/server'
+import Immutable from 'seamless-immutable'
 import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'react-router-redux'
 import { renderRoutes } from 'react-router-config'
@@ -25,7 +24,7 @@ export default ({ clientStats }) => async (req, res, next) => {
     parse
   )
 
-  const { store } = configureStore(history, {}, req)
+  const { store } = configureStore(history, Immutable({}), req)
   const { components, match, params } = await asyncMatchRoutes(
     routes,
     req.originalUrl

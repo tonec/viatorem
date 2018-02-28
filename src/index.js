@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Immutable from 'seamless-immutable'
 import { Provider } from 'react-redux'
 import createHistory from 'history/createBrowserHistory'
 import qhistory from 'qhistory'
@@ -15,7 +16,7 @@ import configureStore from 'redux/configureStore'
 import ReduxAsyncConnect from 'components/ReduxAsyncConnect/ReduxAsyncConnect'
 
 const history = qhistory(createHistory(), stringify, parse)
-const { store } = configureStore(history, window.REDUX_STATE)
+const { store } = configureStore(history, Immutable(window.REDUX_STATE))
 
 const render = async routes => {
   const { components, match, params } = await asyncMatchRoutes(

@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom'
 import { Menu } from 'antd'
 import { Anchor } from 'components'
 
-@connect(({ auth, router }) => ({
+@connect(({ auth, routing }) => ({
   user: auth.user,
-  currentPath: router.location.pathname
+  currentPath: routing.locationBeforeTransitions.pathname
 }))
 class Navigation extends Component {
 

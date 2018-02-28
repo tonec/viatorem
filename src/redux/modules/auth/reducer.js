@@ -1,6 +1,7 @@
+import Immutable from 'seamless-immutable'
 import * as types from './actions'
 
-const initialState = {
+const initialState = Immutable({
   verifying: false,
   verified: false,
   loggingIn: false,
@@ -10,7 +11,7 @@ const initialState = {
   registerError: '',
   user: null,
   error: null
-}
+})
 
 export default function reducer (state = initialState, action = {}) {
   switch (action.type) {

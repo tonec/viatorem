@@ -1,12 +1,12 @@
-import { combineReducers } from 'redux'
-import { routerReducer } from 'react-router-redux'
+import Immutable from 'seamless-immutable'
+import { combineReducers, routerReducer } from 'redux-seamless-immutable'
 import { reducer as formReducer } from 'redux-form'
 import auth from './modules/auth/reducer'
 import trips from './modules/trips/reducer'
 
-export default combineReducers({
-  router: routerReducer,
+export default combineReducers(Immutable({
+  routing: routerReducer,
   form: formReducer,
   auth,
   trips
-})
+}))

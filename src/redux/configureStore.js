@@ -1,4 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux'
+import { stateTransformer } from 'redux-seamless-immutable'
 import apiClient from 'utils/apiClient'
 import { routerMiddleware } from 'react-router-redux'
 import clientMiddleware from './middleware/clientMiddleware'
@@ -12,7 +13,7 @@ export default (history, preloadedState, req) => {
 
   if (__CLIENT__ && __DEVELOPMENT__) {
     const logger = require('redux-logger').createLogger({
-      collapsed: true
+      stateTransformer
     })
     middleware.push(logger.__esModule ? logger.default : logger)
   }
