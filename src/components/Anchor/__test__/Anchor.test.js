@@ -7,12 +7,16 @@ describe('Anchor (snapshot)', () => {
   const props = {
     href: 'http://www.example.com',
     onClick: () => {},
-    disabled: true,
     className: 'test-class-name'
   }
 
-  it('renders according to snapshot', () => {
+  it('renders according to snapshot when enabled', () => {
     const component = shallow(<Anchor {...props}>Link text</Anchor>)
+    expect(component).toMatchSnapshot()
+  })
+
+  it('renders according to snapshot when disabled', () => {
+    const component = shallow(<Anchor {...props} disabled >Link text</Anchor>)
     expect(component).toMatchSnapshot()
   })
 })
