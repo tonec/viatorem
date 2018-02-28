@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
 import apiClient from 'utils/apiClient'
 import { routerMiddleware } from 'react-router-redux'
 import clientMiddleware from './middleware/clientMiddleware'
-import * as reducers from './modules'
+import rootReducer from './rootReducer'
 
 const { __CLIENT__, __DEVELOPMENT__, __DEVTOOLS__, NODE_ENV } = process.env
 
@@ -29,12 +29,11 @@ export default (history, preloadedState, req) => {
     ])
   }
 
-  const rootReducer = combineReducers({ ...reducers })
   const store = createStore(rootReducer, preloadedState, compose(...enhancers))
 
   if (module.hot && NODE_ENV === 'development') {
-    module.hot.accept('./modules/index', () => {
-      const reducers = require('./modules/index')
+    module.hot.accept('./rootReducer', () => {
+      const reducers = require('./rootReducer')
       store.replaceReducer(reducers)
     })
   }
