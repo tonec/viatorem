@@ -3,8 +3,9 @@ const webpack = require('webpack')
 const WriteFilePlugin = require('write-file-webpack-plugin')
 const AutoDllPlugin = require('autodll-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const ReactLoadablePlugin = require('react-loadable/webpack')
-  .ReactLoadablePlugin
+const ReactLoadablePlugin = require('react-loadable/webpack').ReactLoadablePlugin
+const postcssFunctions = require('postcss-functions')
+const functions = require('../src/assets/stylesheets/antd/postcss.functions')
 
 const ExtractGlobalCSS = new ExtractTextPlugin('styles.global.css')
 const ExtractCSS = new ExtractTextPlugin({
@@ -43,7 +44,21 @@ module.exports = {
         use: ExtractGlobalCSS.extract({
           use: [
             {
-              loader: 'css-loader'
+              loader: 'css-loader',
+              options: {
+                importLoaders: 2,
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                sourceMap: true,
+                plugins () {
+                  return [
+                    postcssFunctions({ functions })
+                  ]
+                }
+              }
             },
             {
               loader: 'sass-loader',
@@ -63,7 +78,14 @@ module.exports = {
               loader: 'css-loader',
               options: {
                 modules: true,
+                importLoaders: 2,
                 localIdentName: '[name]__[local]--[hash:base64:5]'
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                sourceMap: true
               }
             },
             {
