@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import apiClient from 'utils/apiClient'
 import { routerMiddleware } from 'react-router-redux'
 import clientMiddleware from './middleware/clientMiddleware'
