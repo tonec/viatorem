@@ -10,7 +10,7 @@ export default req => {
   apiClient.interceptors.request.use(
     conf => {
       if (__SERVER__) {
-        if (req.header('cookie')) {
+        if (req && req.header('cookie')) {
           conf.headers.Cookie = req.header('cookie')
         }
       }
