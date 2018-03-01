@@ -1,3 +1,4 @@
+/* eslint-disable */
 const tinycolor = require('./tinyColor')
 
 var hueStep = 2

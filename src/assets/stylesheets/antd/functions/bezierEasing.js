@@ -1,3 +1,4 @@
+/* eslint-disable */
 var NEWTON_ITERATIONS = 4
 var NEWTON_MIN_SLOPE = 0.001
 var SUBDIVISION_PRECISION = 0.0000001
