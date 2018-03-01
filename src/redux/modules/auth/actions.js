@@ -51,7 +51,7 @@ function unsetCookie () {
 * * * * * * * * */
 
 export const isVerified = ({ auth }) => {
-  return auth.verified && auth.user
+  return auth && !!auth.user
 }
 
 export const verify = () => {
@@ -71,12 +71,12 @@ export const verify = () => {
   }
 }
 
-export const register = data => {
+export const register = userProps => {
   return {
     types: [ REGISTER, REGISTER_SUCCESS, REGISTER_FAIL ],
     promise: async ({ client }) => {
       try {
-        return await client.post('/auth/register', data)
+        await client.post('/auth/register', userProps).data
       } catch (error) {
         throw error
       }
@@ -84,14 +84,14 @@ export const register = data => {
   }
 }
 
-export const login = data => {
+export const login = credentials => {
   return {
     types: [ LOGIN, LOGIN_SUCCESS, LOGIN_FAIL ],
     promise: async ({ client }) => {
       try {
-        const response = await client.post('/auth/login', data)
-        setCookie(response)
-        return response
+        const response = await client.post('/auth/login', credentials)
+        setCookie(response.data.auth)
+        return response.data.user
       } catch (error) {
         catchValidation(error)
         throw error

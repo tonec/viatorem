@@ -8,9 +8,15 @@ const mockAxios = new MockAdapter(axios)
 const middleware = [clientMiddleware({ client: axios })]
 const mockStore = configureMockStore(middleware)
 
-const data = {
-  email: 'test@example.com',
-  password: '1234'
+const responseData = {
+  user: {
+    id: '1234',
+    name: 'Test User'
+  },
+  auth: {
+    accessToken: 'testtoken',
+    expires: 1
+  }
 }
 
 describe('Auth actions - login', () => {
@@ -20,17 +26,16 @@ describe('Auth actions - login', () => {
 
     const expectedActions = [
       { type: actions.LOGIN },
-      { type: actions.LOGIN_SUCCESS }
+      { type: actions.LOGIN_SUCCESS, result: responseData.user }
     ]
 
-    mockAxios.onPost('/auth/login').reply(200, data)
+    mockAxios.onPost('/auth/login').reply(200, responseData)
 
-    return store.dispatch(actions.login()).then(result => {
-      const storeActions = store.getActions()
-      expect(storeActions[0].type).toBe(expectedActions[0].type)
-      expect(storeActions[1].type).toBe(expectedActions[1].type)
-      expect(storeActions[1].result.data).toEqual(data)
-    })
+    return store.dispatch(actions.login())
+      .then(result => {
+        expect(store.getActions()).toEqual(expectedActions)
+      })
+      .catch(error => console.log(error))
   })
 
   it('should dispatch the correct actions and data when unsuccessful', () => {
@@ -44,10 +49,11 @@ describe('Auth actions - login', () => {
 
     mockAxios.onPost('/auth/login').reply(401)
 
-    return store.dispatch(actions.login()).catch(() => {
-      const storeActions = store.getActions()
-      expect(storeActions[0].type).toBe(expectedActions[0].type)
-      expect(storeActions[1].type).toBe(expectedActions[1].type)
-    })
+    return store.dispatch(actions.login())
+      .catch(() => {
+        const storeActions = store.getActions()
+        expect(storeActions[0].type).toBe(expectedActions[0].type)
+        expect(storeActions[1].type).toBe(expectedActions[1].type)
+      })
   })
 })

@@ -3,7 +3,6 @@ import * as types from './actions'
 
 const initialState = Immutable({
   verifying: false,
-  verified: false,
   loggingIn: false,
   loggedIn: false,
   loginError: '',
@@ -22,14 +21,12 @@ export default function reducer (state = initialState, action = {}) {
     case types.VERIFY_SUCCESS:
       return state.merge({
         verifying: false,
-        verified: true,
         user: Immutable(action.result)
       })
 
     case types.VERIFY_FAIL:
       return state.merge({
         verifying: false,
-        verified: false,
         user: null,
         error: action.error
       })
@@ -40,7 +37,6 @@ export default function reducer (state = initialState, action = {}) {
     case types.LOGIN_SUCCESS:
       return state.merge({
         loggingIn: false,
-        verified: true,
         user: Immutable(action.result)
       })
 
