@@ -7,6 +7,7 @@ import asyncMatchRoutes from 'utils/asyncMatchRoutes'
 
 @withRouter
 export default class ReduxAsyncConnect extends Component {
+
   static propTypes = {
     children: PropTypes.node.isRequired,
     history: PropTypes.objectOf(PropTypes.any).isRequired,

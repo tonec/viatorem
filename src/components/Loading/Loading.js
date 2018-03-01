@@ -4,13 +4,13 @@ import PropTypes from 'prop-types'
 const propTypes = {
   isLoading: PropTypes.bool,
   pastDelay: PropTypes.bool,
-  error: PropTypes.object
+  error: PropTypes.bool
 }
 
 const defaultProps = {
   isLoading: false,
   pastDelay: false,
-  error: null
+  error: false
 }
 
 const Loading = ({ isLoading, pastDelay, error }) => {

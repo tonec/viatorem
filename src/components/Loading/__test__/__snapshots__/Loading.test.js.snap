@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loading (snapshot) renders according to snapshot when error is true 1`] = `
+<p>
+  Error!
+</p>
+`;
+
+exports[`Loading (snapshot) renders according to snapshot when isLoading & pastDelay are both true 1`] = `
+<p>
+  Loading...
+</p>
+`;
+
+exports[`Loading (snapshot) renders according to snapshot when no props are passed in 1`] = `""`;
