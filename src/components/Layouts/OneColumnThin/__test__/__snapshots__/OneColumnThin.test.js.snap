@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OneColumnThin (snapshot) renders according to snapshot when enabled 1`] = `
+<div
+  className="one-column-thin test-class-name"
+>
+  <HelmetWrapper
+    defer={true}
+    encodeSpecialCharacters={true}
+    title="Test title"
+  />
+  <Adapter>
+    <Connect(Navigation) />
+  </Adapter>
+  <Adapter>
+    <Row
+      gutter={0}
+    >
+      <Col
+        offset={6}
+        span={12}
+      >
+        <p>
+          Child content
+        </p>
+      </Col>
+    </Row>
+  </Adapter>
+</div>
+`;
