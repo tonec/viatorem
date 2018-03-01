@@ -63,7 +63,7 @@ export default function reducer (state = initialState, action = {}) {
       })
 
     case types.LOGOUT:
-      return state({
+      return state.merge({
         loggedout: true,
         user: null
       })
