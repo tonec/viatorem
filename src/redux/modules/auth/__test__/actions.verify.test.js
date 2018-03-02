@@ -13,7 +13,7 @@ describe('Auth actions - isVerified', () => {
 
     const state = {
       auth: {
-        id: '1234',
+        _id: '1234',
         user: 'Test user'
       }
     }
@@ -26,5 +26,35 @@ describe('Auth actions - isVerified', () => {
     const state = { auth: {} }
 
     expect(actions.isVerified(state)).toBe(false)
+  })
+})
+
+const responseData = {
+  _id: '1234',
+  name: 'Test User',
+  email: 'test@example.com'
+}
+
+describe('Auth actions - verify', () => {
+  it('should dispatch the correct actions if verification is successful', done => {
+
+    const store = mockStore({})
+
+    const expectedActions = [
+      { type: actions.VERIFY },
+      { type: actions.VERIFY_SUCCESS, result: responseData }
+    ]
+
+    mockAxios.onPost('/auth/verify').reply(200, responseData)
+
+    return store.dispatch(actions.verify())
+      .then(result => {
+        expect(store.getActions()).toEqual(expectedActions)
+        done()
+      })
+      .catch(error => {
+        console.log(error)
+        done()
+      })
   })
 })

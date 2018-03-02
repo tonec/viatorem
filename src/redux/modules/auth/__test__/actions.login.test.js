@@ -10,7 +10,7 @@ const mockStore = configureMockStore(middleware)
 
 const responseData = {
   user: {
-    id: '1234',
+    _id: '1234',
     name: 'Test User'
   },
   auth: {
@@ -20,7 +20,7 @@ const responseData = {
 }
 
 describe('Auth actions - login', () => {
-  it('should dispatch the correct actions and data when successful', () => {
+  it('should dispatch the correct actions and data when successful', done => {
 
     const store = mockStore({})
 
@@ -34,11 +34,15 @@ describe('Auth actions - login', () => {
     return store.dispatch(actions.login())
       .then(result => {
         expect(store.getActions()).toEqual(expectedActions)
+        done()
       })
-      .catch(error => console.log(error))
+      .catch(error => {
+        console.log(error)
+        done()
+      })
   })
 
-  it('should dispatch the correct actions and data when unsuccessful', () => {
+  it('should dispatch the correct actions and data when unsuccessful', done => {
 
     const store = mockStore({})
 
@@ -54,6 +58,7 @@ describe('Auth actions - login', () => {
         const storeActions = store.getActions()
         expect(storeActions[0].type).toBe(expectedActions[0].type)
         expect(storeActions[1].type).toBe(expectedActions[1].type)
+        done()
       })
   })
 })
