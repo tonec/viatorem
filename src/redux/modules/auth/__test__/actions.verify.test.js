@@ -37,7 +37,7 @@ const responseData = {
   email: 'test@example.com'
 }
 
-describe('Auth actions - verify', () => {
+describe('Auth actions - Verify', () => {
   it('should dispatch the correct actions if verification is successful', done => {
 
     const store = mockStore({})

@@ -9,29 +9,25 @@ const middleware = [clientMiddleware({ client: axios })]
 const mockStore = configureMockStore(middleware)
 
 const responseData = {
-  user: {
-    _id: '1234',
-    name: 'Test User'
-  },
-  auth: {
-    accessToken: 'testtoken',
-    expires: 1
-  }
+  _id: '1234',
+  name: 'Test User',
+  email: 'test@example.com',
+  message: 'New user registered successfully.'
 }
 
-describe('Auth actions - Login', () => {
-  it('should dispatch the correct actions if login is successful', done => {
+describe('Auth actions - Register', () => {
+  it('should dispatch the correct actions if registration is successful', done => {
 
     const store = mockStore({})
 
     const expectedActions = [
-      { type: actions.LOGIN },
-      { type: actions.LOGIN_SUCCESS, result: responseData.user }
+      { type: actions.REGISTER },
+      { type: actions.REGISTER_SUCCESS, result: responseData }
     ]
 
-    mockAxios.onPost('/auth/login').reply(200, responseData)
+    mockAxios.onPost('/auth/register').reply(200, responseData)
 
-    return store.dispatch(actions.login())
+    return store.dispatch(actions.register())
       .then(result => {
         expect(store.getActions()).toEqual(expectedActions)
         done()
@@ -42,18 +38,18 @@ describe('Auth actions - Login', () => {
       })
   })
 
-  it('should dispatch the correct actions if login fails', done => {
+  it('should dispatch the correct actions if register fails', done => {
 
     const store = mockStore({})
 
     const expectedActions = [
-      { type: actions.LOGIN },
-      { type: actions.LOGIN_FAIL }
+      { type: actions.REGISTER },
+      { type: actions.REGISTER_FAIL }
     ]
 
-    mockAxios.onPost('/auth/login').reply(401)
+    mockAxios.onPost('/auth/register').reply(401)
 
-    return store.dispatch(actions.login())
+    return store.dispatch(actions.register())
       .catch(() => {
         const storeActions = store.getActions()
         expect(storeActions[0].type).toBe(expectedActions[0].type)
