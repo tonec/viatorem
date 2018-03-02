@@ -38,7 +38,12 @@ export const verify = () => {
       }
 
       try {
-        return await client.get('/auth/verify')
+        const response = await client.get('/auth/verify')
+        if (!response.data) {
+          return Promise.reject('Not verified')
+        } else {
+          return response.data
+        }
       } catch (error) {
         throw error
       }
@@ -51,7 +56,8 @@ export const register = userProps => {
     types: [ REGISTER, REGISTER_SUCCESS, REGISTER_FAIL ],
     promise: async ({ client }) => {
       try {
-        await client.post('/auth/register', userProps).data
+        const response = await client.post('/auth/register', userProps)
+        return response.data
       } catch (error) {
         throw error
       }

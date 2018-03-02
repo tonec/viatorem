@@ -8,6 +8,8 @@ const mockAxios = new MockAdapter(axios)
 const middleware = [clientMiddleware({ client: axios })]
 const mockStore = configureMockStore(middleware)
 
+jest.mock('utils/cookie')
+
 describe('Auth actions - isVerified', () => {
   it('should return true if the store contains user data', () => {
 
@@ -45,7 +47,7 @@ describe('Auth actions - verify', () => {
       { type: actions.VERIFY_SUCCESS, result: responseData }
     ]
 
-    mockAxios.onPost('/auth/verify').reply(200, responseData)
+    mockAxios.onGet('/auth/verify').reply(200, responseData)
 
     return store.dispatch(actions.verify())
       .then(result => {
@@ -54,6 +56,28 @@ describe('Auth actions - verify', () => {
       })
       .catch(error => {
         console.log(error)
+        done()
+      })
+  })
+
+  it('should dispatch the correct actions if verification fails', done => {
+
+    const store = mockStore({})
+
+    const expectedActions = [
+      { type: actions.VERIFY },
+      { type: actions.VERIFY_FAIL }
+    ]
+
+    mockAxios.onGet('/auth/verify').reply(200, null)
+
+    return store.dispatch(actions.verify())
+      .then(result => {
+        expect(store.getActions()).toEqual(expectedActions)
+        done()
+      })
+      .catch(() => {
+        // Rejected promise is expected
         done()
       })
   })

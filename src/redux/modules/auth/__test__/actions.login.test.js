@@ -20,7 +20,7 @@ const responseData = {
 }
 
 describe('Auth actions - login', () => {
-  it('should dispatch the correct actions and data when successful', done => {
+  it('should dispatch the correct actions if login is successful', done => {
 
     const store = mockStore({})
 
@@ -42,7 +42,7 @@ describe('Auth actions - login', () => {
       })
   })
 
-  it('should dispatch the correct actions and data when unsuccessful', done => {
+  it('should dispatch the correct actions if login fails', done => {
 
     const store = mockStore({})
 
