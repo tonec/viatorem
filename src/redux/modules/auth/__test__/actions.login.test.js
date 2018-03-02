@@ -3,6 +3,7 @@ import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 import clientMiddleware from 'redux/middleware/clientMiddleware'
 import * as actions from '../actions'
+import * as notifyActions from '../../notify/actions'
 
 const mockAxios = new MockAdapter(axios)
 const middleware = [clientMiddleware({ client: axios })]
@@ -26,7 +27,8 @@ describe('Auth actions - Login', () => {
 
     const expectedActions = [
       { type: actions.LOGIN },
-      { type: actions.LOGIN_SUCCESS, result: responseData.user }
+      { type: actions.LOGIN_SUCCESS, result: responseData.user },
+      { type: notifyActions.SHOW }
     ]
 
     mockAxios.onPost('/auth/login').reply(200, responseData)
@@ -55,9 +57,7 @@ describe('Auth actions - Login', () => {
 
     return store.dispatch(actions.login())
       .catch(() => {
-        const storeActions = store.getActions()
-        expect(storeActions[0].type).toBe(expectedActions[0].type)
-        expect(storeActions[1].type).toBe(expectedActions[1].type)
+        expect(store.getActions()).toEqual(expectedActions)
         done()
       })
   })

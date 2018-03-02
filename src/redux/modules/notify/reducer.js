@@ -11,12 +11,19 @@ const initialState = Immutable({
 export default function reducer (state = initialState, action = {}) {
   switch (action.type) {
 
-    case types.SHOW:
+    case types.SHOW_MESSAGE:
       return state.merge({
-        notifyType: action.notifyType,
+        notifyType: 'message',
+        statusType: action.statusType,
+        message: action.message
+      })
+
+    case types.SHOW_NOTIFICATION:
+      return state.merge({
+        notifyType: 'notification',
         statusType: action.statusType,
         message: action.message,
-        description: action.description
+        description: action.notification
       })
 
     case types.CLEAR:

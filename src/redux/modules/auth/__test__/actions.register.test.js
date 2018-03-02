@@ -3,6 +3,7 @@ import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 import clientMiddleware from 'redux/middleware/clientMiddleware'
 import * as actions from '../actions'
+import * as notifyActions from '../../notify/actions'
 
 const mockAxios = new MockAdapter(axios)
 const middleware = [clientMiddleware({ client: axios })]
