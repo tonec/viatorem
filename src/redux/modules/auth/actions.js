@@ -1,5 +1,5 @@
 import catchValidation from 'utils/catchValidation'
-import cookie from 'js-cookie'
+import { getCookie, setCookie, unsetCookie } from 'utils/cookie'
 
 /*
 * Actions
@@ -20,31 +20,6 @@ export const REGISTER_SUCCESS = `${prefix}/REGISTER_SUCCESS`
 export const REGISTER_FAIL = `${prefix}/REGISTER_FAIL`
 
 export const LOGOUT = `${prefix}/LOGOUT`
-
-/*
-* Action helpers
-* * * * * * * * */
-
-function getCookie (req) {
-  let authCookie = null
-
-  if (process.env.__SERVER__) {
-    authCookie = req.cookies && req.cookies.viatorem ? JSON.parse(req.cookies.viatorem) : null
-  } else {
-    authCookie = cookie.getJSON('viatorem')
-  }
-
-  return authCookie
-}
-
-function setCookie (response) {
-  const options = response.expires ? { expires: response.expires } : undefined
-  cookie.set('viatorem', response, options)
-}
-
-function unsetCookie () {
-  cookie.remove('viatorem')
-}
 
 /*
 * Action creators
