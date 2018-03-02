@@ -1,15 +1,11 @@
 import Immutable from 'seamless-immutable'
 import * as types from './actions'
 
-const initialState = Immutable({
+export const initialState = Immutable({
   verifying: false,
   loggingIn: false,
-  loggedIn: false,
-  loginError: '',
   registering: false,
-  registerError: '',
-  user: null,
-  error: null
+  user: null
 })
 
 export default function reducer (state = initialState, action = {}) {
@@ -27,12 +23,11 @@ export default function reducer (state = initialState, action = {}) {
     case types.VERIFY_FAIL:
       return state.merge({
         verifying: false,
-        user: null,
-        error: action.error
+        user: null
       })
 
     case types.LOGIN:
-      return state.set('loggingIn': true)
+      return state.set('loggingIn', true)
 
     case types.LOGIN_SUCCESS:
       return state.merge({
@@ -43,26 +38,20 @@ export default function reducer (state = initialState, action = {}) {
     case types.LOGIN_FAIL:
       return state.merge({
         loggingIn: false,
-        loginError: action.error
+        user: null
       })
 
     case types.REGISTER:
-      return state.set('registering': true)
+      return state.set('registering', true)
 
     case types.REGISTER_SUCCESS:
-      return state.set('registering': false)
+      return state.set('registering', false)
 
     case types.REGISTER_FAIL:
-      return state.merge({
-        registering: false,
-        registerError: action.error
-      })
+      return state.set('registering', false)
 
     case types.LOGOUT:
-      return state.merge({
-        loggedout: true,
-        user: null
-      })
+      return state.set('user', null)
 
     default:
       return state
