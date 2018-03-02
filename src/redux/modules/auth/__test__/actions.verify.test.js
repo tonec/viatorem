@@ -9,7 +9,7 @@ const middleware = [clientMiddleware({ client: axios })]
 const mockStore = configureMockStore(middleware)
 
 describe('Auth actions - isVerified', () => {
-  it.skip('should return true if the store contains user data', () => {
+  it('should return true if the store contains user data', () => {
 
     const state = {
       auth: {
@@ -19,5 +19,12 @@ describe('Auth actions - isVerified', () => {
     }
 
     expect(actions.isVerified(state)).toBe(true)
+  })
+
+  it('should return false if the store does not contain user data', () => {
+
+    const state = { auth: {} }
+
+    expect(actions.isVerified(state)).toBe(false)
   })
 })
