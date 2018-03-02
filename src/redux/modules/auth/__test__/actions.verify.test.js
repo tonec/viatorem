@@ -8,7 +8,7 @@ const mockAxios = new MockAdapter(axios)
 const middleware = [clientMiddleware({ client: axios })]
 const mockStore = configureMockStore(middleware)
 
-jest.mock('utils/cookie')
+jest.mock('helpers/cookie')
 
 describe('Auth actions - isVerified', () => {
   it('should return true if the store contains user data', () => {

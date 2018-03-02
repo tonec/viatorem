@@ -5,6 +5,7 @@ import { push as pushState } from 'react-router-redux'
 import { renderRoutes } from 'react-router-config'
 import { provideHooks } from 'redial'
 import { isVerified, verify } from 'redux/modules/auth/actions'
+import { Notify } from 'containers'
 
 import 'assets/stylesheets/theme.global.scss'
 
@@ -54,6 +55,11 @@ export default class App extends Component {
   }
 
   render () {
-    return <div>{renderRoutes(this.props.route.routes)}</div>
+    return (
+      <div>
+        {renderRoutes(this.props.route.routes)}
+        <Notify />
+      </div>
+    )
   }
 }

@@ -1,5 +1,6 @@
 import catchValidation from 'utils/catchValidation'
-import { getCookie, setCookie, unsetCookie } from 'utils/cookie'
+import { getCookie, setCookie, unsetCookie } from 'helpers/cookie'
+import { show as notify } from '../notify/actions'
 
 /*
 * Actions
@@ -55,11 +56,19 @@ export const verify = () => {
 export const register = userProps => {
   return {
     types: [ REGISTER, REGISTER_SUCCESS, REGISTER_FAIL ],
-    promise: async ({ client }) => {
+    promise: async ({ client }, dispatch) => {
       try {
         const response = await client.post('/auth/register', userProps)
+        dispatch(notify({
+          statusType: 'success',
+          message: 'Registration success'
+        }))
         return response.data
       } catch (error) {
+        dispatch(notify({
+          statusType: 'error',
+          message: 'Registration failed'
+        }))
         throw error
       }
     }
@@ -69,12 +78,20 @@ export const register = userProps => {
 export const login = credentials => {
   return {
     types: [ LOGIN, LOGIN_SUCCESS, LOGIN_FAIL ],
-    promise: async ({ client }) => {
+    promise: async ({ client }, dispatch) => {
       try {
         const response = await client.post('/auth/login', credentials)
+        dispatch(notify({
+          statusType: 'success',
+          message: 'Login success'
+        }))
         setCookie(response.data.auth)
         return response.data.user
       } catch (error) {
+        dispatch(notify({
+          statusType: 'error',
+          message: 'Login fail'
+        }))
         catchValidation(error)
         throw error
       }

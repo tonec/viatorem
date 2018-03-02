@@ -8,8 +8,9 @@ const initialState = Immutable({
 
 export default function reducer (state = initialState, action = {}) {
   switch (action.type) {
+
     case types.FETCH:
-      return state.set('isFetching': true)
+      return state.set('isFetching', true)
 
     case types.FETCH_SUCCESS:
       return state.merge({
