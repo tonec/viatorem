@@ -40,6 +40,7 @@ export const verify = () => {
       try {
         const response = await client.get('/auth/verify')
         if (!response.data) {
+          unsetCookie()
           return Promise.reject('Not verified')
         } else {
           return response.data
