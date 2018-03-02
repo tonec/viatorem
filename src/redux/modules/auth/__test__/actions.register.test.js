@@ -6,7 +6,7 @@ import * as actions from '../actions'
 import * as notifyActions from '../../notify/actions'
 
 const mockAxios = new MockAdapter(axios)
-const middleware = [clientMiddleware({ client: axios })]
+const middleware = [clientMiddleware(axios)]
 const mockStore = configureMockStore(middleware)
 
 const responseData = {

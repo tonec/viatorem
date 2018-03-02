@@ -6,7 +6,7 @@ import * as actions from '../actions'
 import * as notifyActions from '../../notify/actions'
 
 const mockAxios = new MockAdapter(axios)
-const middleware = [clientMiddleware({ client: axios })]
+const middleware = [clientMiddleware(axios)]
 const mockStore = configureMockStore(middleware)
 
 const responseData = {
@@ -27,8 +27,7 @@ describe('Auth actions - Login', () => {
 
     const expectedActions = [
       { type: actions.LOGIN },
-      { type: actions.LOGIN_SUCCESS, result: responseData.user },
-      { type: notifyActions.SHOW }
+      { type: actions.LOGIN_SUCCESS, result: responseData.user }
     ]
 
     mockAxios.onPost('/auth/login').reply(200, responseData)

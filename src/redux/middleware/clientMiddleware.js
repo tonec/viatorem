@@ -1,4 +1,4 @@
-export default function clientMiddleware (helpers) {
+export default function clientMiddleware (client) {
   return ({ dispatch, getState }) => next => action => {
 
     // Is thunk
@@ -20,7 +20,7 @@ export default function clientMiddleware (helpers) {
     next({ ...rest, type: REQUEST })
 
     // Inject helpers (eg. apiClient as client) and dispatch to action promise
-    const actionPromise = promise(helpers, dispatch)
+    const actionPromise = promise(client, dispatch)
 
     // Dispatch appropriate SUCCESS or FAIL action depending on whether action promise is resolved/value is returned or rejected
     actionPromise
