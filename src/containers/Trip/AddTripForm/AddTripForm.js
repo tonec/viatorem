@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { reduxForm, Field, propTypes } from 'redux-form'
 import { Form, Button } from 'antd'
 import { TextField, TextAreaField, DatePickerFieldRU } from 'components/Forms/Inputs'
-import addTripValidation from './addTripValidation'
+import validation from './validation'
 
 @reduxForm({
   form: 'addTrip',
-  validate: addTripValidation
+  validate: validation
 })
 export default class AddTripForm extends Component {
 

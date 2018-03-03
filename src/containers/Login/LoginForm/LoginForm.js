@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { reduxForm, Field, propTypes } from 'redux-form'
 import { Form, Button } from 'antd'
 import { TextField } from 'components/Forms/Inputs'
-import loginValidation from './loginValidation'
+import validation from './validation'
 
 @reduxForm({
   form: 'login',
-  validate: loginValidation
+  validate: validation
 })
 export default class LoginForm extends Component {
   static propTypes = {

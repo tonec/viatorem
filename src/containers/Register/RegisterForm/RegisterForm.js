@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { reduxForm, Field, propTypes } from 'redux-form'
 import { Form, Button } from 'antd'
 import { TextField } from 'components/Forms/Inputs'
-import registerValidation from './registerValidation'
+import validation from './validation'
 
 @reduxForm({
   form: 'register',
-  validate: registerValidation
+  validate: validation
 })
 export default class RegisterForm extends Component {
 
