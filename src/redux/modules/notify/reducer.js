@@ -1,7 +1,7 @@
 import Immutable from 'seamless-immutable'
 import * as types from './actions'
 
-const initialState = Immutable({
+export const initialState = Immutable({
   notifyType: null,
   statusType: null,
   message: null,
@@ -23,7 +23,7 @@ export default function reducer (state = initialState, action = {}) {
         notifyType: 'notification',
         statusType: action.statusType,
         message: action.message,
-        description: action.notification
+        description: action.description
       })
 
     case types.CLEAR:
