@@ -4,6 +4,8 @@ import { Form, Button, Alert } from 'antd'
 import { TextField } from 'components/Forms/Inputs'
 import validation from './validation'
 
+import style from './style'
+
 @reduxForm({
   form: 'login',
   validate: validation
@@ -34,7 +36,14 @@ export default class LoginForm extends Component {
           placeholder="Password"
         />
         <Form.Item>
-          <Button type="primary" size="large" htmlType="submit">Log In</Button>
+          <Button
+            type="primary"
+            size="large"
+            htmlType="submit"
+            className={style.button}
+          >
+            Log In
+          </Button>
         </Form.Item>
         {error && <Alert showIcon type="error" message={error} />}
       </Form>
