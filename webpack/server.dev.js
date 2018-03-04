@@ -80,7 +80,8 @@ module.exports = {
         NODE_ENV: JSON.stringify('development'),
         __CLIENT__: false,
         __SERVER__: true,
-        __DEVTOOLS__: true // <-------- DISABLE redux-devtools HERE
+        __LOGGER__: false, // <-------- DISABLE redux-logger
+        __DEVTOOLS__: false // <-------- DISABLE redux-devtools HERE
       }
     })
   ]

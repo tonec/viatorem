@@ -124,7 +124,8 @@ module.exports = {
         NODE_ENV: JSON.stringify('development'),
         __CLIENT__: true,
         __SERVER__: false,
-        __DEVTOOLS__: true // <-------- DISABLE redux-devtools HERE
+        __LOGGER__: false, // <-------- DISABLE redux-logger
+        __DEVTOOLS__: true // <-------- DISABLE redux-devtools
       }
     }),
     new AutoDllPlugin({
