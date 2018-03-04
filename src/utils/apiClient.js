@@ -21,8 +21,8 @@ export default req => {
   )
 
   apiClient.interceptors.response.use(
-    response => response.data,
-    error => Promise.reject(error.response ? error.response.data : error)
+    response => response,
+    error => Promise.reject(error.response ? error.response : error)
   )
 
   return apiClient

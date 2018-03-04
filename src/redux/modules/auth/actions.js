@@ -62,7 +62,7 @@ export const register = userProps => {
         const response = await client.post('/auth/register', userProps)
         return response.data
       } catch (error) {
-        return catchValidation(error)
+        return catchValidation(error.data)
       }
     }
   }
@@ -77,7 +77,7 @@ export const login = credentials => {
         setCookie(response.data.auth)
         return response.data.user
       } catch (error) {
-        return catchValidation(error)
+        return catchValidation(error.data)
       }
     }
   }
