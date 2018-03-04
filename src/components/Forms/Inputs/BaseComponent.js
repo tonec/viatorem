@@ -25,7 +25,7 @@ export default function createComponent (AntdComponent, mapProps) {
     }
 
     render () {
-      const { label, labelCol, wrapperCol, help, extra, validateStatus, hasFeedback = true, colon, ...rest } = mapProps(
+      const { label, labelCol, wrapperCol, help, extra, validateStatus, hasFeedback = true, colon, showIcon, ...rest } = mapProps(
         this.props
       )
 
@@ -43,7 +43,7 @@ export default function createComponent (AntdComponent, mapProps) {
           validateStatus={validateStatus}
           colon={colon}
         >
-          {icon ? <AntdComponent prefix={icon} {...rest} /> : <AntdComponent {...rest} />}
+          {icon && showIcon ? <AntdComponent prefix={icon} {...rest} /> : <AntdComponent {...rest} />}
         </FormItem>
       )
     }

@@ -1,0 +1,29 @@
+
+.ant-input {
+  border-color: transparent !important;
+
+  &:hover,
+  &:focus {
+    border-color: transparent;
+    background-color: #81929e;
+  }
+}
+
+.has-error {
+  .ant-input:not([disabled]) {
+    border-color: transparent;
+
+    &:hover,
+    &:focus {
+      border-color: transparent;
+    }
+  }
+}
+
+.ant-input-affix-wrapper {
+  &:hover {
+    .ant-input {
+      border-color: transparent;
+    }
+  }
+}
