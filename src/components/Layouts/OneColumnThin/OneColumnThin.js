@@ -5,8 +5,6 @@ import classNames from 'classnames'
 import { Layout, Row, Col } from 'antd'
 import { Navigation } from 'containers'
 
-import style from './style.scss'
-
 const { Header, Content } = Layout
 
 const propTypes = {
@@ -27,15 +25,15 @@ const defaultProps = {
 }
 
 const OneColumnThin = ({ span, offset, title, className, children, ...props }) => {
-  const classes = classNames('one-column-thin', className)
+  const classes = classNames('layout one-column-thin', className)
 
   return (
     <div className={classes} {...props}>
       <Helmet title={title} />
-      <Header className={style.header}>
+      <Header className="layout-header">
         <Navigation />
       </Header>
-      <Content className={style.content}>
+      <Content className="layout-content">
         <Row>
           <Col span={span} offset={offset}>
             {children}
