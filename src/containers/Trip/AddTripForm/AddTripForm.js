@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { reduxForm, Field, propTypes } from 'redux-form'
-import { Form, Button } from 'antd'
+import { Form, Button, Alert } from 'antd'
 import { TextField, TextAreaField, DatePickerFieldRU } from 'components/Forms/Inputs'
 import validation from './validation'
 
@@ -47,9 +47,7 @@ export default class AddTripForm extends Component {
             Add trip
           </Button>
         </Form.Item>
-        {error && (
-          <p className="help is-danger">{error}</p>
-        )}
+        {error && <Alert showIcon type="error" message={error} />}
       </Form>
     )
   }

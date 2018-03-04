@@ -19,7 +19,7 @@ export default class Register extends Component {
   }
 
   register = data => {
-    this.props.dispatch(register(data))
+    return this.props.dispatch(register(data))
   }
 
   render () {

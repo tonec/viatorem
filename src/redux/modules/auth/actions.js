@@ -62,7 +62,7 @@ export const register = userProps => {
         const response = await client.post('/auth/register', userProps)
         return response.data
       } catch (error) {
-        throw error
+        return catchValidation(error)
       }
     }
   }
