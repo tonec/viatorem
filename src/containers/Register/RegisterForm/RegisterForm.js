@@ -4,7 +4,7 @@ import { Form, Button, Alert } from 'antd'
 import { TextField } from 'components/Forms/Inputs'
 import validation from './validation'
 
-import style from './style'
+import style from './style.scss'
 
 @reduxForm({
   form: 'register',

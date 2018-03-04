@@ -1,4 +1,10 @@
 
+.layout-header {
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+
 .ant-menu-dark.ant-menu-horizontal {
   background-color: transparent;
 }
