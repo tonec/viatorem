@@ -10,6 +10,8 @@ import style from './style.scss'
 const { Header, Content } = Layout
 
 const propTypes = {
+  span: PropTypes.number,
+  offset: PropTypes.number,
   title: PropTypes.string.isRequired,
   className: PropTypes.string,
   children: PropTypes.oneOfType([
@@ -19,10 +21,12 @@ const propTypes = {
 }
 
 const defaultProps = {
+  span: 6,
+  offset: 9,
   className: ''
 }
 
-const OneColumnThin = ({ title, className, children, ...props }) => {
+const OneColumnThin = ({ span, offset, title, className, children, ...props }) => {
   const classes = classNames('one-column-thin', className)
 
   return (
@@ -33,7 +37,7 @@ const OneColumnThin = ({ title, className, children, ...props }) => {
       </Header>
       <Content className={style.content}>
         <Row>
-          <Col span={12} offset={6}>
+          <Col span={span} offset={offset}>
             {children}
           </Col>
         </Row>

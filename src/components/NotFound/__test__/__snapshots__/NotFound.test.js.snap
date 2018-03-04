@@ -3,6 +3,8 @@
 exports[`NotFound (snapshot) renders according to snapshot 1`] = `
 <OneColumnThin
   className=""
+  offset={9}
+  span={6}
   title="404 page not found"
 >
   <h1>
