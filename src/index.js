@@ -40,7 +40,7 @@ const render = async routes => {
       <Provider store={store}>
         <ConnectedRouter history={history}>
           <ReduxAsyncConnect routes={routes} store={store} helpers={{}}>
-            <div>{renderRoutes(routes)}</div>
+            {renderRoutes(routes)}
           </ReduxAsyncConnect>
         </ConnectedRouter>
       </Provider>

@@ -46,7 +46,7 @@ export default ({ clientStats }) => async (req, res, next) => {
       <Provider store={store}>
         <ConnectedRouter location={req.path} history={history}>
           <ReduxAsyncConnect routes={routes} store={store} helpers={{}}>
-            <div>{renderRoutes(routes)}</div>
+            {renderRoutes(routes)}
           </ReduxAsyncConnect>
         </ConnectedRouter>
       </Provider>
