@@ -22,29 +22,33 @@ export default class RegisterForm extends Component {
         <Field
           name="name"
           type="text"
+          size="large"
           component={TextField}
-          label="Name"
+          placeholder="Name"
         />
         <Field
           name="email"
           type="text"
+          size="large"
           component={TextField}
-          label="Email"
+          placeholder="Email"
         />
         <Field
           name="password"
           type="password"
+          size="large"
           component={TextField}
-          label="Password"
+          placeholder="Password"
         />
         <Field
           name="password_confirmation"
           type="password"
+          size="large"
           component={TextField}
-          label="Password confirmation"
+          placeholder="Password confirmation"
         />
         <Form.Item>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" size="large" htmlType="submit">
             Log In
           </Button>
         </Form.Item>

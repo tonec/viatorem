@@ -22,17 +22,19 @@ export default class LoginForm extends Component {
         <Field
           name="email"
           type="text"
+          size="large"
           component={TextField}
-          label="Email"
+          placeholder="Email"
         />
         <Field
           name="password"
           type="password"
+          size="large"
           component={TextField}
-          label="Password"
+          placeholder="Password"
         />
         <Form.Item>
-          <Button type="primary" htmlType="submit">Log In</Button>
+          <Button type="primary" size="large" htmlType="submit">Log In</Button>
         </Form.Item>
         {error && <Alert showIcon type="error" message={error} />}
       </Form>
