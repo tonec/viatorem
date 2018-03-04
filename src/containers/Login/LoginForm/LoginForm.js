@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { reduxForm, Field, propTypes } from 'redux-form'
-import { Form, Button } from 'antd'
+import { Form, Button, Alert } from 'antd'
 import { TextField } from 'components/Forms/Inputs'
 import validation from './validation'
 
@@ -9,6 +9,7 @@ import validation from './validation'
   validate: validation
 })
 export default class LoginForm extends Component {
+
   static propTypes = {
     ...propTypes
   }
@@ -31,11 +32,9 @@ export default class LoginForm extends Component {
           label="Password"
         />
         <Form.Item>
-          <Button type="primary" htmlType="submit">
-            Log In
-          </Button>
+          <Button type="primary" htmlType="submit">Log In</Button>
         </Form.Item>
-        {error && <p className="help is-danger">{error}</p>}
+        {error && <Alert showIcon type="error" message={error} />}
       </Form>
     )
   }

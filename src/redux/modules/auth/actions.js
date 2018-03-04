@@ -77,7 +77,7 @@ export const login = credentials => {
         setCookie(response.data.auth)
         return response.data.user
       } catch (error) {
-        catchValidation(error)
+        return catchValidation(error)
       }
     }
   }

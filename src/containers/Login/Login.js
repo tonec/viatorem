@@ -13,7 +13,7 @@ export default class Login extends Component {
   }
 
   handleSubmit = data => {
-    this.props.dispatch(login(data))
+    return this.props.dispatch(login(data))
   }
 
   render () {
