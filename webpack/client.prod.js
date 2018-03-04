@@ -94,7 +94,7 @@ module.exports = {
       path.resolve('./src'),
       path.resolve('./node_modules')
     ],
-    extensions: ['.js', '.css']
+    extensions: ['.js']
   },
   plugins: [
     new ReactLoadablePlugin({

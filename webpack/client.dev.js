@@ -104,7 +104,7 @@ module.exports = {
       path.resolve('./src'),
       path.resolve('./node_modules')
     ],
-    extensions: ['.js', 'sass', '.scss']
+    extensions: ['.js']
   },
   plugins: [
     new WriteFilePlugin(),
