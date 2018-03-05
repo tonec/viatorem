@@ -5,6 +5,7 @@
     "stage-0"
   ],
   "plugins": [
+    ["import", { "libraryName": "antd" }],
     "transform-decorators-legacy",
     "syntax-dynamic-import",
     "react-loadable/babel"
