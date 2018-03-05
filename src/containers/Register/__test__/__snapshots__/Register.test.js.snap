@@ -1,14 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Register renders according to snapshot when enabled 1`] = `
+exports[`Register (snapshot) renders according to snapshot 1`] = `
 <OneColumnThin
   className=""
   offset={9}
   span={6}
   title="Register"
 >
-  <ReduxForm
-    onSubmit={[Function]}
-  />
+  <Connect(ReduxForm) />
 </OneColumnThin>
 `;

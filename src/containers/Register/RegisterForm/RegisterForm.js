@@ -1,26 +1,25 @@
 import React, { Component } from 'react'
-import { reduxForm, Field, propTypes } from 'redux-form'
+import PropTypes from 'prop-types'
+import { Field } from 'redux-form'
 import { Form, Button, Alert } from 'antd'
 import { TextField } from 'components/Forms/Inputs'
-import validation from './validation'
 
 import style from './style.scss'
 
-@reduxForm({
-  form: 'register',
-  validate: validation
-})
 export default class RegisterForm extends Component {
 
   static propTypes = {
-    ...propTypes
+    handleSubmit: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+    submitting: PropTypes.bool,
+    error: PropTypes.any
   }
 
   render () {
-    const { handleSubmit, error } = this.props
+    const { handleSubmit, onSubmit, submitting, error } = this.props
 
     return (
-      <Form layout="vertical" onSubmit={handleSubmit}>
+      <Form layout="vertical" onSubmit={handleSubmit(onSubmit)}>
         <Field
           name="name"
           type="text"
@@ -54,6 +53,7 @@ export default class RegisterForm extends Component {
             type="primary"
             size="large"
             htmlType="submit"
+            loading={submitting}
             className={style.button}
           >
             Log In
