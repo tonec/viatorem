@@ -10,9 +10,9 @@ import { Notify } from 'containers'
 import 'assets/stylesheets/theme.global.scss'
 
 @provideHooks({
-  fetch: ({ store: { dispatch, getState }, location }) => {
+  fetch: async ({ store: { dispatch, getState }, location }) => {
     if (!isVerified(getState())) {
-      dispatch(verify()).catch(() => null)
+      await dispatch(verify()).catch(() => null)
     }
   }
 })

@@ -9,7 +9,7 @@ const { __CLIENT__, __LOGGER__, __DEVTOOLS__, NODE_ENV } = process.env
 
 export default (history, preloadedState, req) => {
   const client = apiClient(req)
-  const middleware = [clientMiddleware(client), routerMiddleware(history)]
+  const middleware = [clientMiddleware({ client, req }), routerMiddleware(history)]
 
   if (__CLIENT__ && NODE_ENV === 'development' && __LOGGER__) {
     const logger = require('redux-logger').createLogger({

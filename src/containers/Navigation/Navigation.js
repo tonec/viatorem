@@ -55,7 +55,6 @@ class Navigation extends Component {
         {!user && this.renderMenuItem('/login', 'Login')}
         {!user && this.renderMenuItem('/register', 'Register')}
         {user && this.renderMenuItem('/dashboard', 'Dashboard')}
-        {user && this.renderMenuItem('/trip', 'Trip')}
         {user && this.renderMenuItem('/logout', 'Logout', this.handleLogout)}
       </Menu>
     )

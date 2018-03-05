@@ -7,3 +7,4 @@ export { default as NotFound } from './NotFound/NotFound'
 
 // Layouts
 export { default as OneColumnThin } from './Layouts/OneColumnThin/OneColumnThin'
+export { default as OneColumn } from './Layouts/OneColumn/OneColumn'

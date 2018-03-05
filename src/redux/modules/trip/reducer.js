@@ -1,25 +1,27 @@
 import Immutable from 'seamless-immutable'
 import * as types from './actions'
 
-const initialState = Immutable({
-  isFetching: false,
-  trips: null
+export const initialState = Immutable({
+  fetching: false,
+  trips: false
 })
 
 export default function reducer (state = initialState, action = {}) {
   switch (action.type) {
 
     case types.FETCH:
-      return state.set('isFetching', true)
+      return state.set('fetching', true)
 
     case types.FETCH_SUCCESS:
       return state.merge({
-        isFetching: false,
-        trips: action.payload
+        fetching: false,
+        trips: Immutable(action.result)
       })
 
-    case types.ADD_FAIL:
-      return state.set('isFetching': false)
+    case types.FETCH_FAIL:
+      return state.merge({
+        fetching: false
+      })
 
     default:
       return state

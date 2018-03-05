@@ -13,7 +13,9 @@ const locationHelper = locationHelperBuilder({})
 
 const isAuthenticated = connectedReduxRedirect({
   redirectPath: '/login',
-  authenticatedSelector: state => state.auth.user !== null,
+  authenticatedSelector: state => {
+    return state.auth.user !== null
+  },
   wrapperDisplayName: 'UserIsAuthenticated',
   redirectAction: routerActions.replace
 })

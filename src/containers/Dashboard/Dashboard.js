@@ -1,11 +1,19 @@
 import React from 'react'
-import { OneColumnThin } from 'components'
+import { OneColumn } from 'components'
+import { provideHooks } from 'redial'
+import { fetchTrips } from 'redux/modules/trip/actions'
+import TripListContainer from './TripList/TripListContainer'
 
 const Dashboard = () => (
-  <OneColumnThin title="Home">
+  <OneColumn title="Dashboard">
     <h1>Dashboard</h1>2
     <h2>Welcome to your Dashboard</h2>
-  </OneColumnThin>
+    <TripListContainer />
+  </OneColumn>
 )
 
-export default Dashboard
+const hooks = {
+  fetch: ({ store }) => store.dispatch(fetchTrips())
+}
+
+export default provideHooks(hooks)(Dashboard)

@@ -1,6 +1,5 @@
 import catchValidation from 'utils/catchValidation'
 import { getCookie, setCookie, unsetCookie } from 'helpers/cookie'
-import { showMessage } from '../notify/actions'
 
 /*
 * Actions
@@ -33,9 +32,9 @@ export const isVerified = ({ auth }) => {
 export const verify = () => {
   return {
     types: [ VERIFY, VERIFY_SUCCESS, VERIFY_FAIL ],
-    promise: async (client) => {
+    promise: async ({ client, req }) => {
 
-      if (!getCookie()) {
+      if (!getCookie(req)) {
         return Promise.reject(new Error('No cookie to verify'))
       }
 
@@ -57,7 +56,7 @@ export const verify = () => {
 export const register = userProps => {
   return {
     types: [ REGISTER, REGISTER_SUCCESS, REGISTER_FAIL ],
-    promise: async (client, dispatch) => {
+    promise: async ({ client }, dispatch) => {
       try {
         const response = await client.post('/auth/register', userProps)
         return response.data
@@ -71,7 +70,7 @@ export const register = userProps => {
 export const login = credentials => {
   return {
     types: [ LOGIN, LOGIN_SUCCESS, LOGIN_FAIL ],
-    promise: async (client, dispatch) => {
+    promise: async ({ client }, dispatch) => {
       try {
         const response = await client.post('/auth/login', credentials)
         setCookie(response.data.auth)
