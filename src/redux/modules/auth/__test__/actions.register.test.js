@@ -5,7 +5,7 @@ import clientMiddleware from 'redux/middleware/clientMiddleware'
 import * as actions from '../actions'
 
 const mockAxios = new MockAdapter(axios)
-const middleware = [clientMiddleware(axios)]
+const middleware = [clientMiddleware({ client: axios })]
 const mockStore = configureMockStore(middleware)
 
 const responseData = {
