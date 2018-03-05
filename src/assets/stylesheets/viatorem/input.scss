@@ -7,6 +7,16 @@
     border-color: transparent;
     background-color: #81929e;
   }
+};
+
+.has-feedback {
+  .ant-input {
+    padding-right: 11px;
+  }
+
+  &:after {
+    display: none
+  }
 }
 
 .has-error {
@@ -26,4 +36,41 @@
       border-color: transparent;
     }
   }
+}
+
+.ant-form-item-with-help {
+  margin-bottom: 24px;
+}
+
+.ant-form-explain {
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  font-size: 12px;
+  line-height: 14px;
+  color: #fff !important;
+  padding: 6px 10px;
+  margin-top: 0;
+  margin-left: 10px;
+  border-radius: 4px;
+  transform-origin: -6px 0;
+  transform: translate3d(0, 0, 0) scale(1);
+  white-space: nowrap;
+
+  &:before {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    margin-top: -6px;
+    border-right: 6px solid rgba(0, 0, 0, 0.5);
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+  }
+}
+
+.has-feedback .ant-form-explain {
+  transform: translate3d(0, -50%, 0) scale(1);
 }
