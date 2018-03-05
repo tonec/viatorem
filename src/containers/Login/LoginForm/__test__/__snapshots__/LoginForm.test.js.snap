@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginForm renders according to snapshot 1`] = `
+<Form
+  hideRequiredMark={false}
+  layout="vertical"
+  onSubmit={[Function]}
+  prefixCls="ant-form"
+>
+  <Field
+    component={[Function]}
+    name="email"
+    placeholder="Email"
+    size="large"
+    type="text"
+  />
+  <Field
+    component={[Function]}
+    name="password"
+    placeholder="Password"
+    size="large"
+    type="password"
+  />
+  <FormItem
+    colon={true}
+    hasFeedback={false}
+    prefixCls="ant-form"
+  >
+    <Button
+      ghost={false}
+      htmlType="submit"
+      loading={false}
+      prefixCls="ant-btn"
+      size="large"
+      type="primary"
+    >
+      Log In
+    </Button>
+  </FormItem>
+</Form>
+`;
