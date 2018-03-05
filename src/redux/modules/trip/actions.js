@@ -17,12 +17,12 @@ export const FETCH_FAIL = `${prefix}/FETCH_FAIL`
 export const fetchTrips = userProps => {
   return {
     types: [ FETCH, FETCH_SUCCESS, FETCH_FAIL ],
-    promise: async (client, dispatch) => {
+    promise: async ({ client }, dispatch) => {
       try {
-        // const response = await client.get('/trips')
-        // return response.data
+        const response = await client.get('/trips')
+        return response.data
       } catch (error) {
-        return catchValidation(error.data)
+        throw error
       }
     }
   }
