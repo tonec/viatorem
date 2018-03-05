@@ -3,6 +3,7 @@ import express from 'express'
 import httpProxy from 'http-proxy'
 import webpack from 'webpack'
 import Loadable from 'react-loadable'
+import cookieParser from 'cookie-parser'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
 import webpackHotServerMiddleware from 'webpack-hot-server-middleware'
@@ -21,6 +22,8 @@ const app = express()
 const proxy = httpProxy.createProxyServer({
   target: 'http://localhost:3030/api'
 })
+
+app.use(cookieParser())
 
 // Proxy to API server
 app.use('/api', (req, res) => {
