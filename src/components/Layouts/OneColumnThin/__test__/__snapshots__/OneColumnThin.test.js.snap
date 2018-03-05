@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`OneColumnThin (snapshot) renders according to snapshot when enabled 1`] = `
+exports[`OneColumnThin (snapshot) renders according to snapshot 1`] = `
 <div
   className="layout one-column-thin test-class-name"
 >

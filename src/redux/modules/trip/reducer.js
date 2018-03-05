@@ -3,7 +3,7 @@ import * as types from './actions'
 
 export const initialState = Immutable({
   fetching: false,
-  trips: false
+  trips: []
 })
 
 export default function reducer (state = initialState, action = {}) {

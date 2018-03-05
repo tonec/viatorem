@@ -11,7 +11,7 @@ const props = {
 const childContent = <p>Child content</p>
 
 describe('OneColumnThin (snapshot)', () => {
-  it('renders according to snapshot when enabled', () => {
+  it('renders according to snapshot', () => {
     const component = shallow(<OneColumnThin {...props}>{childContent}</OneColumnThin>)
     expect(component).toMatchSnapshot()
   })

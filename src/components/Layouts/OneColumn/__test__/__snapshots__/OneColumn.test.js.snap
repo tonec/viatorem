@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`OneColumn (snapshot) renders according to snapshot when enabled 1`] = `
+exports[`OneColumn (snapshot) renders according to snapshot 1`] = `
 <div
   className="layout one-column test-class-name"
 >
@@ -21,8 +21,8 @@ exports[`OneColumn (snapshot) renders according to snapshot when enabled 1`] = `
       gutter={0}
     >
       <Col
-        offset={9}
-        span={6}
+        offset={0}
+        span={24}
       >
         <p>
           Child content

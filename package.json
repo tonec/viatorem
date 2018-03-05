@@ -33,6 +33,7 @@
     "history": "^4.6.3",
     "http-proxy": "^1.16.2",
     "js-cookie": "^2.2.0",
+    "lodash": "^4.17.5",
     "lru-memoize": "^1.0.2",
     "npm": "^5.7.1",
     "nprogress": "^0.2.0",
