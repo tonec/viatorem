@@ -20,7 +20,7 @@ export const fetchTrips = userProps => {
     promise: async ({ client }, dispatch) => {
       try {
         const response = await client.get('/trips')
-        return response.data
+        return response.data.result.trips
       } catch (error) {
         throw error
       }
