@@ -1,5 +1,71 @@
 
-.listItem {
-  display: block;
-
+.tripList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
+
+.tripListItem {
+
+  hr {
+    border: 0;
+    border-top: 4px solid rgba(8, 8, 8, .2);
+    margin: 0 76px;
+  }
+
+  a {
+    display: flex;
+    align-items: stretch;
+    color: rgba(255, 255, 255, .85);
+    transition: all .3s;
+
+    &:hover {
+      color: #69c0ff;
+
+      .date {
+        border-color: #69c0ff;
+      }
+    }
+  }
+
+  .date {
+    flex: 0 1 50px;
+    text-align: center;
+    margin: 10px 0;
+    padding: 0 10px;
+    border-right: 1px solid rgba(8, 8, 8, .3);
+
+    .start {
+      font-size: 20px;
+      line-height: 22px;
+      text-transform: uppercase;
+
+      span:first-child {
+        display: block;
+        font-size: 38px;
+        line-height: 40px;
+      }
+    }
+  }
+
+  .meta {
+    flex: 1 0 auto;
+    padding: 10px;
+
+    h3 {
+      margin: 0;
+      color: inherit;
+      font-size: 24px;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .actions {
+    flex: 0 1 150px;
+    padding: 10px;
+  }
+}
+

@@ -7,7 +7,6 @@ import TripListContainer from './TripList/TripListContainer'
 const Dashboard = () => (
   <OneColumn title="Dashboard">
     <h1>Dashboard</h1>
-    <h2>Welcome to your Dashboard</h2>
     <TripListContainer />
   </OneColumn>
 )
