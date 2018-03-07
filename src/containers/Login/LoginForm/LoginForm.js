@@ -4,7 +4,7 @@ import { Field } from 'redux-form'
 import { Form, Button, Alert } from 'antd'
 import { TextField } from 'components/Forms/Inputs'
 
-import style from './style.scss'
+import styles from './styles.scss'
 
 export default class LoginForm extends Component {
 
@@ -40,7 +40,7 @@ export default class LoginForm extends Component {
             size="large"
             htmlType="submit"
             loading={submitting}
-            className={style.button}
+            className={styles.button}
           >
             Log In
           </Button>
