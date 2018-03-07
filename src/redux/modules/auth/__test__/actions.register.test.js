@@ -9,7 +9,7 @@ const middleware = [clientMiddleware({ client: axios })]
 const mockStore = configureMockStore(middleware)
 
 const responseData = {
-  _id: '1234',
+  id: '1234',
   name: 'Test User',
   email: 'test@example.com',
   message: 'New user registered successfully.'

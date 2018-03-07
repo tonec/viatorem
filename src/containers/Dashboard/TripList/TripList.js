@@ -8,7 +8,7 @@ class TripList extends Component {
   }
 
   renderTrip (trip) {
-    return <li key={trip._id}>{trip.title}</li>
+    return <li key={trip.id}>{trip.title}</li>
   }
 
   render () {

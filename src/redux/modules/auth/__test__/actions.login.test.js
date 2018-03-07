@@ -10,7 +10,7 @@ const mockStore = configureMockStore(middleware)
 
 const responseData = {
   user: {
-    _id: '1234',
+    id: '1234',
     name: 'Test User'
   },
   auth: {

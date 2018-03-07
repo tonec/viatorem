@@ -15,7 +15,7 @@ describe('Auth actions - isVerified', () => {
 
     const state = {
       auth: {
-        _id: '1234',
+        id: '1234',
         user: 'Test user'
       }
     }
@@ -32,7 +32,7 @@ describe('Auth actions - isVerified', () => {
 })
 
 const responseData = {
-  _id: '1234',
+  id: '1234',
   name: 'Test User',
   email: 'test@example.com'
 }
