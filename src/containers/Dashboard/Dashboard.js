@@ -12,7 +12,7 @@ const Dashboard = () => (
 )
 
 const hooks = {
-  fetch: ({ store }) => store.dispatch(fetchTrips())
+  fetch: ({ store, location }) => store.dispatch(fetchTrips(location.query.page))
 }
 
 export default provideHooks(hooks)(Dashboard)
