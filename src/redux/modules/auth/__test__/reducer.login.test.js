@@ -21,7 +21,7 @@ describe('Auth reducer - Login', () => {
   it('should handle LOGIN_SUCCESS', () => {
     expect(reducer(initialState, {
       type: actions.LOGIN_SUCCESS,
-      result: userData
+      response: userData
     })).toEqual({
       ...initialState,
       loggingIn: false,

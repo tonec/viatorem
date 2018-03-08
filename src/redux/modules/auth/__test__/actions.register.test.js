@@ -22,7 +22,7 @@ describe('Auth actions - Register', () => {
 
     const expectedActions = [
       { type: actions.REGISTER },
-      { type: actions.REGISTER_SUCCESS, result: responseData }
+      { type: actions.REGISTER_SUCCESS, response: responseData }
     ]
 
     mockAxios.onPost('/auth/register').reply(200, responseData)

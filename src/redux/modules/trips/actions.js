@@ -1,4 +1,5 @@
-import catchValidation from 'utils/catchValidation'
+import { normalize } from 'normalizr'
+import { tripsListSchema } from './schema'
 
 /*
 * Actions
@@ -22,7 +23,7 @@ export const fetchTrips = (pageNum = 1) => {
 
       try {
         const response = await client.get(`/trips?per_page=${perPage}&page=${pageNum}`)
-        return response.data.result
+        return normalize(response.data.trips, tripsListSchema)
       } catch (error) {
         throw error
       }

@@ -44,7 +44,7 @@ describe('Auth actions - Verify', () => {
 
     const expectedActions = [
       { type: actions.VERIFY },
-      { type: actions.VERIFY_SUCCESS, result: responseData }
+      { type: actions.VERIFY_SUCCESS, response: responseData }
     ]
 
     mockAxios.onGet('/auth/verify').reply(200, responseData)

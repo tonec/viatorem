@@ -22,7 +22,7 @@ describe('Auth reducer - Verify', () => {
   it('should handle VERIFY_SUCCESS', () => {
     expect(reducer(initialState, {
       type: actions.VERIFY_SUCCESS,
-      result: userData
+      response: userData
     })).toEqual({
       ...initialState,
       verifying: false,

@@ -24,7 +24,7 @@ export default function clientMiddleware (helpers) {
 
     // Dispatch appropriate SUCCESS or FAIL action depending on whether action promise is resolved/value is returned or rejected
     actionPromise
-      .then(result => next({ ...rest, result, type: SUCCESS }), () => next({ ...rest, type: FAILURE }))
+      .then(response => next({ ...rest, response, type: SUCCESS }), () => next({ ...rest, type: FAILURE }))
       .catch(error => {
         console.error('MIDDLEWARE ERROR:', error)
         next({ ...rest, error, type: FAILURE })

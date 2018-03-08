@@ -3,7 +3,7 @@ import * as types from './actions'
 
 export const initialState = Immutable({
   fetching: false,
-  result: {}
+  visibleTrips: []
 })
 
 export default function reducer (state = initialState, action = {}) {
@@ -15,7 +15,7 @@ export default function reducer (state = initialState, action = {}) {
     case types.FETCH_SUCCESS:
       return state.merge({
         fetching: false,
-        result: Immutable(action.result)
+        visibleTrips: Immutable(action.response.result)
       })
 
     case types.FETCH_FAIL:

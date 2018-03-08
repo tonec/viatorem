@@ -4,6 +4,7 @@ import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { fetchTrips } from 'redux/modules/trips/actions'
+import { getVisibleTrips } from 'redux/selectors/trips'
 import TripsList from './TripsList'
 
 export class TripsListContainer extends Component {
@@ -20,9 +21,9 @@ export class TripsListContainer extends Component {
   }
 }
 
-const mapStateToProps = ({ trips }) => {
+const mapStateToProps = (state) => {
   return {
-    trips: trips.result.trips
+    trips: getVisibleTrips(state)
   }
 }
 

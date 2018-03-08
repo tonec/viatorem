@@ -26,7 +26,7 @@ describe('Auth actions - Login', () => {
 
     const expectedActions = [
       { type: actions.LOGIN },
-      { type: actions.LOGIN_SUCCESS, result: responseData.user }
+      { type: actions.LOGIN_SUCCESS, response: responseData.user }
     ]
 
     mockAxios.onPost('/auth/login').reply(200, responseData)

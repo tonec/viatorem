@@ -17,7 +17,7 @@ export default function reducer (state = initialState, action = {}) {
     case types.VERIFY_SUCCESS:
       return state.merge({
         verifying: false,
-        user: Immutable(action.result)
+        user: Immutable(action.response)
       })
 
     case types.VERIFY_FAIL:
@@ -32,7 +32,7 @@ export default function reducer (state = initialState, action = {}) {
     case types.LOGIN_SUCCESS:
       return state.merge({
         loggingIn: false,
-        user: Immutable(action.result)
+        user: Immutable(action.response)
       })
 
     case types.LOGIN_FAIL:
