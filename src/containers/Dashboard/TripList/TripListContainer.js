@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { compose } from 'redux'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import TripList from './TripList'
 
 export class TripListContainer extends Component {
@@ -22,4 +24,7 @@ const mapStateToProps = ({ trip }) => {
   }
 }
 
-export default connect(mapStateToProps)(TripListContainer)
+export default compose(
+  connect(mapStateToProps),
+  withRouter
+)(TripListContainer)
