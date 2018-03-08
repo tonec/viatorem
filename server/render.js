@@ -19,7 +19,7 @@ export default ({ clientStats }) => async (req, res, next) => {
   let modules = []
 
   const history = qhistory(
-    createHistory({ initialEntries: [req.path] }),
+    createHistory({ initialEntries: [req.originalUrl] }),
     stringify,
     parse
   )
@@ -27,7 +27,7 @@ export default ({ clientStats }) => async (req, res, next) => {
   const { store } = configureStore(history, Immutable({}), req)
   const { components, match, params } = await asyncMatchRoutes(
     routes,
-    req.originalUrl
+    req.path
   )
 
   await trigger('fetch', components, {
