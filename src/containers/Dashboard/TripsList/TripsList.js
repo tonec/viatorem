@@ -3,11 +3,11 @@ import PropTypes from 'prop-types'
 import { withRouter } from 'react-router'
 import { Pagination } from 'antd'
 import { createQueryObject } from 'helpers/querystring'
-import Item from './TripListItem'
+import Item from './TripsListItem'
 
 import styles from './styles.scss'
 
-export class TripList extends Component {
+export class TripsList extends Component {
 
   static propTypes = {
     location: PropTypes.object.isRequired,
@@ -50,15 +50,17 @@ export class TripList extends Component {
   }
 
   render () {
+    const { trips } = this.props
+
     return (
       <div>
         <ul className={styles.tripList}>
-          {this.props.trips.map(trip => <Item key={trip.id} trip={trip} />)}
+          {trips.map(trip => <Item key={trip.id} trip={trip} />)}
         </ul>
-        <Pagination current={this.getPageNumber()} onChange={this.handleOnChange} total={50} />
+        <Pagination current={this.getPageNumber()} onChange={this.handleOnChange} total={trips.length} />
       </div>
     )
   }
 }
 
-export default withRouter(TripList)
+export default withRouter(TripsList)

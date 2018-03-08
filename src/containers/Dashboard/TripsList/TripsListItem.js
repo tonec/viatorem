@@ -13,7 +13,7 @@ const defaultProps = {
   trip: {}
 }
 
-const TripListItem = ({ trip }) => {
+const TripsListItem = ({ trip }) => {
   const startDate = moment.utc(trip.startDate).format('DD MMM').split(' ')
 
   return (
@@ -38,9 +38,9 @@ const TripListItem = ({ trip }) => {
   )
 }
 
-TripListItem.propTypes = propTypes
-TripListItem.defaultProps = defaultProps
+TripsListItem.propTypes = propTypes
+TripsListItem.defaultProps = defaultProps
 
-export default TripListItem
+export default TripsListItem
 
 // <span className={styles.end}>{moment.utc(trip.endDate).format('DD MMM')}</span>

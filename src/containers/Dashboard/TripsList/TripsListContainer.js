@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import { fetchTrips } from 'redux/modules/trip/actions'
-import TripList from './TripList'
+import { fetchTrips } from 'redux/modules/trips/actions'
+import TripsList from './TripsList'
 
-export class TripListContainer extends Component {
+export class TripsListContainer extends Component {
 
   static propTypes = {
     trips: PropTypes.arrayOf(PropTypes.object),
@@ -15,18 +15,18 @@ export class TripListContainer extends Component {
 
   render () {
     return (
-      <TripList trips={this.props.trips} fetchAction={this.props.fetchTrips} />
+      <TripsList trips={this.props.trips} fetchAction={this.props.fetchTrips} />
     )
   }
 }
 
-const mapStateToProps = ({ trip }) => {
+const mapStateToProps = ({ trips }) => {
   return {
-    trips: trip.trips
+    trips: trips.result.trips
   }
 }
 
 export default compose(
   connect(mapStateToProps, { fetchTrips }),
   withRouter
-)(TripListContainer)
+)(TripsListContainer)

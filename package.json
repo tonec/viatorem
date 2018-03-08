@@ -36,6 +36,7 @@
     "lodash": "^4.17.5",
     "lru-memoize": "^1.0.2",
     "moment": "^2.21.0",
+    "normalizr": "^3.2.4",
     "npm": "^5.7.1",
     "nprogress": "^0.2.0",
     "qhistory": "^1.0.0",

@@ -22,7 +22,7 @@ export const fetchTrips = (pageNum = 1) => {
 
       try {
         const response = await client.get(`/trips?per_page=${perPage}&page=${pageNum}`)
-        return response.data.result.trips
+        return response.data.result
       } catch (error) {
         throw error
       }
