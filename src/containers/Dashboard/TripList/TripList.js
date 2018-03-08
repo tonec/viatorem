@@ -12,7 +12,8 @@ export class TripList extends Component {
   static propTypes = {
     location: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
-    trips: PropTypes.arrayOf(PropTypes.object)
+    trips: PropTypes.arrayOf(PropTypes.object),
+    fetchAction: PropTypes.func.isRequired
   }
 
   static defaultProps = {
@@ -20,10 +21,10 @@ export class TripList extends Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    const { location } = nextProps
+    const { location: { query } } = nextProps
 
-    if (this.pageNumberHasChanged(location.query.page)) {
-
+    if (this.pageNumberHasChanged(query.page)) {
+      this.props.fetchAction(query.page)
     }
   }
 
@@ -32,7 +33,7 @@ export class TripList extends Component {
   }
 
   pageNumberHasChanged (nextPageNum) {
-    return nextPageNum !== this.getPageNumber()
+    return parseInt(nextPageNum) !== this.getPageNumber()
   }
 
   updatePageNumber (nextPageNum) {
