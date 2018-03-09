@@ -3,7 +3,8 @@ import * as types from './actions'
 
 export const initialState = Immutable({
   fetching: false,
-  visibleTrips: []
+  visibleTrips: Immutable([]),
+  pagination: Immutable({})
 })
 
 export default function reducer (state = initialState, action = {}) {

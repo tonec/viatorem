@@ -5,7 +5,7 @@ import { tripsListSchema } from './schema'
 * Actions
 * * * * */
 
-const prefix = '@auth'
+const prefix = '@trips'
 
 export const FETCH = `${prefix}/FETCH`
 export const FETCH_SUCCESS = `${prefix}/FETCH_SUCCESS`
@@ -22,8 +22,13 @@ export const fetchTrips = (pageNum = 1) => {
       const perPage = 5
 
       try {
-        const response = await client.get(`/trips?per_page=${perPage}&page=${pageNum}`)
-        return normalize(response.data.trips, tripsListSchema)
+        const { data } = await client.get(`/trips?per_page=${perPage}&page=${pageNum}`)
+        return {
+          ...normalize(data.trips, tripsListSchema),
+          meta: data.meta,
+          paginationKey: 'trips',
+          pagination: data.pages
+        }
       } catch (error) {
         throw error
       }

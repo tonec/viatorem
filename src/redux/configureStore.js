@@ -34,7 +34,7 @@ export default (history, preloadedState, req) => {
 
   if (module.hot && NODE_ENV === 'development') {
     module.hot.accept('./rootReducer', () => {
-      const reducers = require('./rootReducer')
+      const reducers = require('./rootReducer').default
       store.replaceReducer(reducers)
     })
   }

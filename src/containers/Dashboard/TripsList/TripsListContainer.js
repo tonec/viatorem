@@ -11,21 +11,27 @@ export class TripsListContainer extends Component {
 
   static propTypes = {
     trips: PropTypes.arrayOf(PropTypes.object),
-    fetchTrips: PropTypes.func.isRequired,
+    pagination: PropTypes.object.isRequired,
+    fetchTrips: PropTypes.func.isRequired
   }
 
   render () {
+    const { trips, pagination, fetchTrips } = this.props
+
     return (
-      <TripsList trips={this.props.trips} fetchAction={this.props.fetchTrips} />
+      <TripsList
+        trips={trips}
+        pagination={pagination}
+        fetchAction={fetchTrips}
+      />
     )
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    trips: getVisibleTrips(state)
-  }
-}
+const mapStateToProps = ({ pagination, ...state }) => ({
+  trips: getVisibleTrips(state),
+  pagination: pagination.trips
+})
 
 export default compose(
   connect(mapStateToProps, { fetchTrips }),

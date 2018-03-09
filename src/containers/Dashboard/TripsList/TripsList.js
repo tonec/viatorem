@@ -13,6 +13,7 @@ export class TripsList extends Component {
     location: PropTypes.object.isRequired,
     history: PropTypes.object.isRequired,
     trips: PropTypes.arrayOf(PropTypes.object),
+    pagination: PropTypes.object.isRequired,
     fetchAction: PropTypes.func.isRequired
   }
 
@@ -24,7 +25,7 @@ export class TripsList extends Component {
     const { location: { query } } = nextProps
 
     if (this.pageNumberHasChanged(query.page)) {
-      this.props.fetchAction(query.page)
+      // this.props.fetchAction(query.page)
     }
   }
 
@@ -50,14 +51,19 @@ export class TripsList extends Component {
   }
 
   render () {
-    const { trips } = this.props
+    const { trips, pagination } = this.props
 
     return (
       <div>
         <ul className={styles.tripList}>
           {trips.map(trip => <Item key={trip.id} trip={trip} />)}
         </ul>
-        <Pagination current={this.getPageNumber()} onChange={this.handleOnChange} total={trips.length} />
+        <Pagination
+          current={this.getPageNumber()}
+          onChange={this.handleOnChange}
+          total={pagination.total}
+          pageSize={5}
+        />
       </div>
     )
   }
