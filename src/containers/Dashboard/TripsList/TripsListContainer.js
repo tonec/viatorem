@@ -35,7 +35,4 @@ const mapStateToProps = ({ pagination, ...state }) => ({
   pagination: pagination.trips
 })
 
-export default compose(
-  withRouter,
-  connect(mapStateToProps)
-)(TripsListContainer)
+export default connect(mapStateToProps)(TripsListContainer)
