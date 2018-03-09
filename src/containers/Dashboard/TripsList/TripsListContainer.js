@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { compose } from 'redux'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router'
 import { getVisibleTrips } from 'redux/selectors/trips'
 import { Row, Col } from 'antd'
 import TripsList from './TripsList'
