@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { compose } from 'redux'
+import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
+import { push } from 'react-router-redux'
 import { Pagination } from 'antd'
 import { createQueryObject } from 'helpers/querystring'
 import Item from './TripsListItem'
@@ -11,22 +14,13 @@ export class TripsList extends Component {
 
   static propTypes = {
     location: PropTypes.object.isRequired,
-    history: PropTypes.object.isRequired,
+    dispatch: PropTypes.func.isRequired,
     trips: PropTypes.arrayOf(PropTypes.object),
-    pagination: PropTypes.object.isRequired,
-    fetchAction: PropTypes.func.isRequired
+    pagination: PropTypes.object.isRequired
   }
 
   static defaultProps = {
     trips: []
-  }
-
-  componentWillReceiveProps (nextProps) {
-    const { location: { query } } = nextProps
-
-    if (this.pageNumberHasChanged(query.page)) {
-      // this.props.fetchAction(query.page)
-    }
   }
 
   getPageNumber () {
@@ -38,10 +32,10 @@ export class TripsList extends Component {
   }
 
   updatePageNumber (nextPageNum) {
-    const { location, history } = this.props
+    const { location, dispatch } = this.props
     const newQuery = createQueryObject({ page: nextPageNum })
 
-    history.push({ pathname: location.pathname, query: newQuery })
+    dispatch(push({ pathname: location.pathname, query: newQuery }))
   }
 
   handleOnChange = nextPageNum => {
@@ -61,12 +55,15 @@ export class TripsList extends Component {
         <Pagination
           current={this.getPageNumber()}
           onChange={this.handleOnChange}
-          total={pagination.total}
-          pageSize={5}
+          total={parseInt(pagination.total)}
+          pageSize={parseInt(pagination.perPage)}
         />
       </div>
     )
   }
 }
 
-export default withRouter(TripsList)
+export default compose(
+  withRouter,
+  connect()
+)(TripsList)

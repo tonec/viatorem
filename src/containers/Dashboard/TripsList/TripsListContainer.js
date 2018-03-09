@@ -3,27 +3,29 @@ import PropTypes from 'prop-types'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import { fetchTrips } from 'redux/modules/trips/actions'
 import { getVisibleTrips } from 'redux/selectors/trips'
+import { Row, Col } from 'antd'
 import TripsList from './TripsList'
 
 export class TripsListContainer extends Component {
 
   static propTypes = {
     trips: PropTypes.arrayOf(PropTypes.object),
-    pagination: PropTypes.object.isRequired,
-    fetchTrips: PropTypes.func.isRequired
+    pagination: PropTypes.object.isRequired
   }
 
   render () {
-    const { trips, pagination, fetchTrips } = this.props
+    const { trips, pagination } = this.props
 
     return (
-      <TripsList
-        trips={trips}
-        pagination={pagination}
-        fetchAction={fetchTrips}
-      />
+      <Row>
+        <Col span={18} offset={3}>
+          <TripsList
+            trips={trips}
+            pagination={pagination}
+          />
+        </Col>
+      </Row>
     )
   }
 }
@@ -34,6 +36,6 @@ const mapStateToProps = ({ pagination, ...state }) => ({
 })
 
 export default compose(
-  connect(mapStateToProps, { fetchTrips }),
-  withRouter
+  withRouter,
+  connect(mapStateToProps)
 )(TripsListContainer)
