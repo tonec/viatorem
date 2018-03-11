@@ -36,7 +36,7 @@ export default [
       { path: '/login', component: Login },
       { path: '/register', component: isNotAuthenticated(Register) },
       { path: '/dashboard', component: isAuthenticated(Dashboard) },
-      { path: '/trip', component: isAuthenticated(Trip) },
+      { path: '/trip/:id', component: isAuthenticated(Trip) },
       { component: NotFound }
     ]
   }

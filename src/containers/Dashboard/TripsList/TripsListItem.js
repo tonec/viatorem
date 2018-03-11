@@ -19,7 +19,7 @@ const TripsListItem = ({ trip }) => {
   return (
     <li key={trip.id} className={styles.tripListItem}>
       <hr />
-      <Link to="/trips/:id">
+      <Link to={`/trip/${trip.id}`}>
         <span className={styles.date}>
           <span className={styles.start}>
             <span>{startDate[0]}</span>
@@ -42,5 +42,3 @@ TripsListItem.propTypes = propTypes
 TripsListItem.defaultProps = defaultProps
 
 export default TripsListItem
-
-// <span className={styles.end}>{moment.utc(trip.endDate).format('DD MMM')}</span>
