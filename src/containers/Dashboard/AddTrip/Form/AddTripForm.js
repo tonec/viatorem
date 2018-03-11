@@ -1,28 +1,23 @@
 import React, { Component } from 'react'
-import { reduxForm, Field, propTypes } from 'redux-form'
+import PropTypes from 'prop-types'
+import { Field } from 'redux-form'
 import { Form, Button, Alert } from 'antd'
 import { TextField, TextAreaField, DatePickerFieldRU } from 'components/Forms/Inputs'
-import validation from './validation'
 
-@reduxForm({
-  form: 'addTrip',
-  validate: validation
-})
 export default class AddTripForm extends Component {
 
   static propTypes = {
-    ...propTypes
-  }
-
-  handleSelect = date => {
-    console.log(date)
+    handleSubmit: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+    submitting: PropTypes.bool,
+    error: PropTypes.any
   }
 
   render () {
-    const { handleSubmit, error } = this.props
+    const { handleSubmit, onSubmit, submitting, error } = this.props
 
     return (
-      <Form layout="vertical" onSubmit={handleSubmit}>
+      <Form layout="vertical" onSubmit={handleSubmit(onSubmit)}>
         <Field
           name="title"
           type="text"
@@ -43,7 +38,12 @@ export default class AddTripForm extends Component {
           label="Dates"
         />
         <Form.Item>
-          <Button type="primary" htmlType="submit">
+          <Button
+            type="primary"
+            size="large"
+            htmlType="submit"
+            loading={submitting}
+          >
             Add trip
           </Button>
         </Form.Item>

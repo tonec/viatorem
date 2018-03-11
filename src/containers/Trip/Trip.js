@@ -6,7 +6,6 @@ import { provideHooks } from 'redial'
 import { fetchTrip } from 'redux/modules/trips/actions'
 import { getTrip } from 'redux/selectors/trips'
 import { OneColumn } from 'components'
-import AddTripForm from './AddTripForm/AddTripForm'
 
 class AddTrip extends Component {
 

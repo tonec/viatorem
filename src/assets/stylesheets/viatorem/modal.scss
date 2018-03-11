@@ -1,0 +1,17 @@
+
+.ant-modal-content {
+  background-color: rgb(21, 87, 148);
+}
+
+  .ant-modal-header {
+    background-color: rgb(24, 144, 255);
+  }
+
+  .ant-modal-close {
+    color: #fff;
+
+    &:hover {
+      color: #fff;
+      opacity: .5;
+    }
+  }

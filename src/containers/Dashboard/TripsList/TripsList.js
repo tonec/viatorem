@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Pagination } from 'components'
+import { Button } from 'antd'
+import AddTrip from '../AddTrip/AddTripContainer'
 import Item from './TripsListItem'
 import styles from './styles.scss'
 
@@ -20,6 +22,11 @@ export class TripsList extends Component {
 
     return (
       <div>
+        <div className={styles.listActions}>
+          <Button.Group>
+            <AddTrip />
+          </Button.Group>
+        </div>
         <ul className={styles.tripList}>
           {trips.map(trip => <Item key={trip.id} trip={trip} />)}
         </ul>

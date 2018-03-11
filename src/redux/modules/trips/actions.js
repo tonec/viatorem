@@ -15,6 +15,10 @@ export const FETCH_ALL = `${prefix}/FETCH_ALL`
 export const FETCH_ALL_SUCCESS = `${prefix}/FETCH_ALL_SUCCESS`
 export const FETCH_ALL_FAIL = `${prefix}/FETCH_ALL_FAIL`
 
+export const ADD = `${prefix}/ADD`
+export const ADD_SUCCESS = `${prefix}/ADD_SUCCESS`
+export const ADD_FAIL = `${prefix}/ADD_FAIL`
+
 /*
 * Action creators
 * * * * * * * * */
@@ -47,6 +51,19 @@ export const fetchTrips = (pageNum = 1) => {
           paginationKey: 'trips',
           pagination: data.pages
         }
+      } catch (error) {
+        throw error
+      }
+    }
+  }
+}
+
+export const addTrip = (tripProps) => {
+  return {
+    types: [ ADD, ADD_SUCCESS, ADD_FAIL ],
+    promise: async () => {
+      try {
+        console.log(tripProps)
       } catch (error) {
         throw error
       }
