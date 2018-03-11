@@ -7,8 +7,6 @@ import { push } from 'react-router-redux'
 import { Pagination as AntdPagination } from 'antd'
 import { createQueryObject } from 'helpers/querystring'
 
-import styles from './styles.scss'
-
 export class Pagination extends Component {
 
   static propTypes = {

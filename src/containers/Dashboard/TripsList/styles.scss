@@ -46,8 +46,15 @@
   }
 
   .meta {
-    flex: 1 0 auto;
+    flex: 1;
     padding: 10px;
+    min-width: 0;
+
+    > * {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
 
     h3 {
       margin: 0;
