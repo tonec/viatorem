@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { getVisibleTrips } from 'redux/selectors/trips'
+import { getVisibleTrips, getPaginationTrips } from 'redux/selectors/trips'
 import { Row, Col } from 'antd'
 import TripsList from './TripsList'
 
@@ -28,9 +28,9 @@ export class TripsListContainer extends Component {
   }
 }
 
-const mapStateToProps = ({ pagination, ...state }) => ({
+const mapState = (state) => ({
   trips: getVisibleTrips(state),
-  pagination: pagination.trips
+  pagination: getPaginationTrips(state)
 })
 
-export default connect(mapStateToProps)(TripsListContainer)
+export default connect(mapState)(TripsListContainer)

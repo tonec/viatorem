@@ -20,10 +20,10 @@ export class RegisterFormContainer extends Component {
   }
 }
 
-const mapStateToProps = () => ({})
+const mapState = () => ({})
 
 export default compose(
-  connect(mapStateToProps, { register }),
+  connect(mapState, { register }),
   reduxForm({
     form: 'register',
     validate: validation

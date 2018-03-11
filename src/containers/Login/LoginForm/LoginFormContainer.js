@@ -20,10 +20,10 @@ export class LoginFormContainer extends Component {
   }
 }
 
-const mapStateToProps = () => ({})
+const mapState = () => ({})
 
 export default compose(
-  connect(mapStateToProps, { login }),
+  connect(mapState, { login }),
   reduxForm({
     form: 'login',
     validate: validation
