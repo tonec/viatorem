@@ -1,22 +1,51 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { compose } from 'redux'
 import { connect } from 'react-redux'
-import { OneColumnThin } from 'components'
+import { provideHooks } from 'redial'
+import { fetchTrip } from 'redux/modules/trips/actions'
+import { getTrip } from 'redux/selectors/trips'
+import { OneColumn } from 'components'
 import AddTripForm from './AddTripForm/AddTripForm'
 
 class AddTrip extends Component {
 
+  static propTypes = {
+    trip: PropTypes.object.isRequired,
+    fetching: PropTypes.bool.isRequired
+  }
+
   render () {
+    const { trip, fetching } = this.props
+
+    if (fetching) {
+      return null
+    }
+
     return (
-      <OneColumnThin title="Register">
-        <p>trip</p>
-      </OneColumnThin>
+      <OneColumn title={trip.title}>
+        <h1>{trip.title}</h1>
+        <p>{trip.description}</p>
+      </OneColumn>
     )
   }
 }
 
-const mapState = {
-
+const mapState = (state, ownProps) => {
+  return {
+    trip: getTrip(state, ownProps.match.params.id)
+  }
 }
 
-export default connect(mapState)(AddTrip)
+const hooks = {
+  fetch: ({ store, params }) => {
+    if (!getTrip(store.getState(), params.id)) {
+      return store.dispatch(fetchTrip(params.id))
+    }
+  }
+}
+
+export default compose(
+  connect(mapState),
+  provideHooks(hooks)
+)(AddTrip)

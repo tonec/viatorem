@@ -1,5 +1,5 @@
 import { normalize } from 'normalizr'
-import { tripsListSchema } from './schema'
+import { tripSchema, tripsListSchema } from './schema'
 
 /*
 * Actions
@@ -11,14 +11,32 @@ export const FETCH = `${prefix}/FETCH`
 export const FETCH_SUCCESS = `${prefix}/FETCH_SUCCESS`
 export const FETCH_FAIL = `${prefix}/FETCH_FAIL`
 
+export const FETCH_ALL = `${prefix}/FETCH_ALL`
+export const FETCH_ALL_SUCCESS = `${prefix}/FETCH_ALL_SUCCESS`
+export const FETCH_ALL_FAIL = `${prefix}/FETCH_ALL_FAIL`
+
 /*
 * Action creators
 * * * * * * * * */
 
-export const fetchTrips = (pageNum = 1) => {
+export const fetchTrip = (id) => {
   return {
     types: [ FETCH, FETCH_SUCCESS, FETCH_FAIL ],
-    promise: async ({ client }, dispatch) => {
+    promise: async ({ client }) => {
+      try {
+        const { data } = await client.get(`/trips/${id}`)
+        return normalize(data, tripSchema)
+      } catch (error) {
+        throw error
+      }
+    }
+  }
+}
+
+export const fetchTrips = (pageNum = 1) => {
+  return {
+    types: [ FETCH_ALL, FETCH_ALL_SUCCESS, FETCH_ALL_FAIL ],
+    promise: async ({ client }) => {
       const perPage = 5
 
       try {
