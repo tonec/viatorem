@@ -6,7 +6,6 @@ import TripsListContainer from './TripsList/TripsListContainer'
 
 const Dashboard = () => (
   <OneColumn title="Dashboard">
-    <h1>Dashboard</h1>
     <TripsListContainer />
   </OneColumn>
 )
