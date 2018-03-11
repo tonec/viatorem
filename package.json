@@ -28,6 +28,7 @@
     "antd": "^3.2.2",
     "axios": "^0.18.0",
     "babel-polyfill": "^6.23.0",
+    "classnames": "^2.2.5",
     "cookie-parser": "^1.4.3",
     "express": "^4.15.2",
     "history": "^4.6.3",
@@ -57,7 +58,8 @@
     "redux-devtools-extension": "^2.13.2",
     "redux-form": "^7.2.3",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "reselect": "^3.0.1"
   },
   "devDependencies": {
     "autodll-webpack-plugin": "^0.3.4",
