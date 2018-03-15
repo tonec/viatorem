@@ -11,6 +11,7 @@ import Loadable from 'react-loadable'
 import { getBundles } from 'react-loadable/webpack'
 import asyncMatchRoutes from 'utils/asyncMatchRoutes'
 import { trigger } from 'redial'
+import serialize from 'serialize-javascript'
 import configureStore from '../src/redux/configureStore'
 import routes from '../src/routes'
 import ReduxAsyncConnect from '../src/components/ReduxAsyncConnect/ReduxAsyncConnect'
@@ -54,7 +55,7 @@ export default ({ clientStats }) => async (req, res, next) => {
   )
 
   const state = store.getState()
-  const stateJson = JSON.stringify(state)
+  const stateJson = serialize(JSON.stringify(state), { isJSON: true })
 
   let bundles = []
   let styles = []
