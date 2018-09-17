@@ -6,20 +6,12 @@ import { Link } from 'react-router-dom'
 import { Menu } from 'antd'
 import { Anchor } from 'components'
 
-@connect(({ auth, routing }) => ({
-  user: auth.user,
-  currentPath: routing.locationBeforeTransitions.pathname
-}))
 class Navigation extends Component {
 
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     currentPath: PropTypes.string.isRequired,
     user: PropTypes.shape({ name: PropTypes.string })
-  }
-
-  static defaultProps = {
-    user: null
   }
 
   handleLogout = event => {
@@ -61,4 +53,9 @@ class Navigation extends Component {
   }
 }
 
-export default Navigation
+const mapState = ({ auth, routing }) => ({
+  user: auth.user,
+  currentPath: routing.locationBeforeTransitions.pathname
+})
+
+export default connect(mapState)(Navigation)
